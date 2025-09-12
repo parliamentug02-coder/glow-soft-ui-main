@@ -13,6 +13,7 @@ import { toast } from '@/components/ui/sonner';
 import { useAuth } from '@/contexts/AuthContext';
 import { hasPermission, initializeUserContext } from '@/lib/auth';
 import EditAdModal from '@/components/EditAdModal';
+import ContactButton from '@/components/ContactButton'; // Import ContactButton
 
 interface Advertisement {
   id: string;
@@ -207,8 +208,8 @@ const AdvertisementPage = () => {
                       {advertisement.title}
                     </h1>
                     
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-muted-foreground">
+                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-foreground">{advertisement.users?.nickname}</span>
                           {advertisement.users?.role !== 'user' && (
@@ -219,8 +220,8 @@ const AdvertisementPage = () => {
                               }
                             >
                               {advertisement.users?.role === 'vip' ? 'VIP' : 
-                               ad.users?.role === 'moderator' ? 'Модератор' : 
-                               ad.users?.role === 'admin' ? 'Адмін' : ''}
+                               advertisement.users?.role === 'moderator' ? 'Модератор' : 
+                               advertisement.users?.role === 'admin' ? 'Адмін' : ''}
                             </Badge>
                           )}
                         </div>
@@ -237,30 +238,41 @@ const AdvertisementPage = () => {
                         </div>
                       </div>
 
-                      {canEdit && (
-                        <div className="flex gap-2">
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setIsEditModalOpen(true)}
-                            >
-                              <Edit className="w-4 h-4 mr-2" />
-                              Редагувати
-                            </Button>
-                          </motion.div>
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Button
-                              variant="destructive"
-                              size="sm"
-                              onClick={handleDelete}
-                            >
-                              <Trash2 className="w-4 h-4 mr-2" />
-                              Видалити
-                            </Button>
-                          </motion.div>
-                        </div>
-                      )}
+                      <div className="flex flex-wrap gap-2">
+                        {canEdit && (
+                          <>
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setIsEditModalOpen(true)}
+                              >
+                                <Edit className="w-4 h-4 mr-2" />
+                                Редагувати
+                              </Button>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                onClick={handleDelete}
+                              >
+                                <Trash2 className="w-4 h-4 mr-2" />
+                                Видалити
+                              </Button>
+                            </motion.div>
+                          </>
+                        )}
+                        
+                        {/* Contact Button */}
+                        {user && user.id !== advertisement.user_id && (
+                          <ContactButton 
+                            userId={advertisement.user_id} 
+                            userName={advertisement.users?.nickname || 'Користувач'} 
+                            advertisementId={advertisement.id}
+                          />
+                        )}
+                      </div>
                     </div>
                   </div>
                   
@@ -291,7 +303,7 @@ const AdvertisementPage = () => {
                             size="lg" 
                             variant="outline" 
                             onClick={() => {
-                              navigator.clipboard.writeText(advertisement.discord_contact!);
+                              navigator.copy(advertisement.discord_contact!);
                               toast.success('Discord скопійовано в буфер обміну');
                             }}
                           >

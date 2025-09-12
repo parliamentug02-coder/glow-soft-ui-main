@@ -16,7 +16,8 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Link } from 'react-router-dom';
-import { useTheme } from 'next-themes'; // Import useTheme
+import { useTheme } from 'next-themes';
+import MessagesButton from './MessagesButton'; // Import MessagesButton
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +25,7 @@ const Navbar = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { user, setUser } = useAuth();
-  const { theme, setTheme } = useTheme(); // Use the theme hook
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -160,6 +161,7 @@ const Navbar = () => {
             {/* Auth Section */}
             {user ? (
               <div className="flex items-center gap-4">
+                <MessagesButton /> {/* Add MessagesButton here */}
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                   <Button
                     variant="ghost"

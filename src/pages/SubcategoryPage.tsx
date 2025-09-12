@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/components/ui/sonner';
+import ContactButton from '@/components/ContactButton'; // Import ContactButton
 
 interface Advertisement {
   id: string;
@@ -20,6 +21,7 @@ interface Advertisement {
   is_vip: boolean;
   created_at: string;
   price?: number;
+  user_id: string;
   users?: {
     nickname: string;
     role: string;
@@ -261,25 +263,13 @@ const SubcategoryPage = () => {
                                   Детальніше
                                 </Button>
                               </motion.div>
-                              {(ad.discord_contact || ad.telegram_contact) && (
+                              {(ad.discord_contact || ad.telegram_contact || (ad.user_id && ad.users?.nickname)) && (
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }} className="flex-1">
-                                  <Button 
-                                    size="sm" 
-                                    className="w-full text-xs btn-accent"
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      if (ad.telegram_contact) {
-                                        window.open(`https://t.me/${ad.telegram_contact?.replace('@', '')}`, '_blank');
-                                      } else if (ad.discord_contact) {
-                                        navigator.clipboard.writeText(ad.discord_contact);
-                                        toast.success('Discord скопійовано в буфер обміну');
-                                      }
-                                    }}
-                                  >
-                                    <MessageCircle className="w-3 h-3 mr-1" />
-                                    Контакт
-                                  </Button>
+                                  <ContactButton 
+                                    userId={ad.user_id} 
+                                    userName={ad.users?.nickname || 'Користувач'} 
+                                    advertisementId={ad.id}
+                                  />
                                 </motion.div>
                               )}
                             </div>
