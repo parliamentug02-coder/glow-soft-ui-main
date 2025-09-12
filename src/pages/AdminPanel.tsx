@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Search, Ban, Shield, Crown, Trash2, Eye, Users, FileText, BarChart3, Download } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { ArrowLeft, Search, Ban, Shield, Crown, Trash2, Eye, Users, FileText, BarChart3, Download, ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -16,11 +16,12 @@ import { hasPermission } from '@/lib/auth';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth(); // Отримуємо стан завантаження автентифікації
+  const { user, loading: authLoading } = useAuth();
   const [users, setUsers] = useState([]);
   const [advertisements, setAdvertisements] = useState([]);
   const [logs, setLogs] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+  const [adSearchQuery, setAdSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -31,7 +32,6 @@ const AdminPanel = () => {
 
   useEffect(() => {
     if (authLoading) {
-      // Якщо автентифікація ще завантажується, нічого не робимо
       return;
     }
 
@@ -40,7 +40,6 @@ const AdminPanel = () => {
       return;
     }
     
-    // Ensure user context is set for RLS
     const initAndFetch = async () => {
       const { initializeUserContext } = await import('@/lib/auth');
       await initializeUserContext();
@@ -48,7 +47,7 @@ const AdminPanel = () => {
     };
     
     initAndFetch();
-  }, [user, authLoading, navigate]); // Додаємо authLoading до залежностей
+  }, [user, authLoading, navigate]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -136,7 +135,6 @@ const AdminPanel = () => {
 
       if (error) throw error;
 
-      // Log the action
       await logAction(`${action}${newRole ? `_${newRole}` : ''}`, targetUserId, { action, newRole });
 
       toast.success('Дію виконано успішно');
@@ -157,7 +155,6 @@ const AdminPanel = () => {
 
       if (error) throw error;
 
-      // Log the action
       await logAction('delete_advertisement', undefined, { advertisement_id: adId });
 
       toast.success('Оголошення видалено');
@@ -208,13 +205,17 @@ const AdminPanel = () => {
     }
   };
 
-  const filteredAds = advertisements.filter(ad =>
-    ad.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    ad.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    ad.users?.nickname.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredUsers = users.filter(u =>
+    u.nickname.toLowerCase().includes(userSearchQuery.toLowerCase()) ||
+    u.role.toLowerCase().includes(userSearchQuery.toLowerCase())
   );
 
-  // Показуємо завантаження або повідомлення про доступ, якщо authLoading
+  const filteredAds = advertisements.filter(ad =>
+    ad.title.toLowerCase().includes(adSearchQuery.toLowerCase()) ||
+    ad.description.toLowerCase().includes(adSearchQuery.toLowerCase()) ||
+    ad.users?.nickname.toLowerCase().includes(adSearchQuery.toLowerCase())
+  );
+
   if (authLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -304,7 +305,7 @@ const AdminPanel = () => {
 
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <Card className="hover:scale-105 transition-transform">
+                  <Card className="hover:scale-105 transition-transform shadow-soft">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
                     </CardHeader>
@@ -314,7 +315,7 @@ const AdminPanel = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="hover:scale-105 transition-transform">
+                  <Card className="hover:scale-105 transition-transform shadow-soft">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
                     </CardHeader>
@@ -324,7 +325,7 @@ const AdminPanel = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="hover:scale-105 transition-transform">
+                  <Card className="hover:scale-105 transition-transform shadow-soft">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
                     </CardHeader>
@@ -334,7 +335,7 @@ const AdminPanel = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="hover:scale-105 transition-transform">
+                  <Card className="hover:scale-105 transition-transform shadow-soft">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
                     </CardHeader>
@@ -347,22 +348,31 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="users" className="space-y-4">
-                <Card>
+                <Card className="shadow-soft">
                   <CardHeader>
                     <CardTitle>Управління користувачами</CardTitle>
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                      <Input
+                        value={userSearchQuery}
+                        onChange={(e) => setUserSearchQuery(e.target.value)}
+                        placeholder="Пошук користувачів за нікнеймом або роллю..."
+                        className="pl-10 rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+                      />
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {users.map((targetUser) => (
+                      {filteredUsers.map((targetUser) => (
                         <motion.div 
                           key={targetUser.id} 
-                          className="flex items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow"
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
                           whileHover={{ scale: 1.01 }}
                         >
-                          <div>
-                            <p className="font-medium flex items-center gap-2">
+                          <div className="flex-1 mb-2 sm:mb-0">
+                            <p className="font-medium flex items-center gap-2 text-foreground">
                               {targetUser.nickname}
-                              {targetUser.role === 'vip' && <Badge className="bg-accent">VIP</Badge>}
+                              {targetUser.role === 'vip' && <Badge className="bg-accent text-accent-foreground">VIP</Badge>}
                               {targetUser.role === 'moderator' && <Badge variant="secondary">Модератор</Badge>}
                               {targetUser.role === 'admin' && <Badge variant="destructive">Адмін</Badge>}
                             </p>
@@ -371,7 +381,7 @@ const AdminPanel = () => {
                               Дата реєстрації: {new Date(targetUser.created_at).toLocaleDateString()}
                             </p>
                           </div>
-                          <div className="flex gap-2">
+                          <div className="flex gap-2 flex-wrap justify-end">
                             {user.role === 'admin' && targetUser.role !== 'admin' && (
                               <>
                                 <Button
@@ -380,6 +390,7 @@ const AdminPanel = () => {
                                   onClick={() => handleUserAction(targetUser.id, 'role', 'vip')}
                                   disabled={targetUser.role === 'vip'}
                                   className="hover:scale-105 transition-transform"
+                                  title="Зробити VIP"
                                 >
                                   <Crown className="w-4 h-4" />
                                 </Button>
@@ -389,6 +400,7 @@ const AdminPanel = () => {
                                   onClick={() => handleUserAction(targetUser.id, 'role', 'moderator')}
                                   disabled={targetUser.role === 'moderator'}
                                   className="hover:scale-105 transition-transform"
+                                  title="Зробити Модератором"
                                 >
                                   <Shield className="w-4 h-4" />
                                 </Button>
@@ -403,6 +415,7 @@ const AdminPanel = () => {
                                   targetUser.is_banned ? 'unban' : 'ban'
                                 )}
                                 className="hover:scale-105 transition-transform"
+                                title={targetUser.is_banned ? 'Розблокувати' : 'Заблокувати'}
                               >
                                 <Ban className="w-4 h-4" />
                               </Button>
@@ -416,16 +429,16 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="ads" className="space-y-4">
-                <Card>
+                <Card className="shadow-soft">
                   <CardHeader>
                     <CardTitle>Управління оголошеннями</CardTitle>
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                       <Input
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Пошук оголошень..."
-                        className="pl-10 rounded-2xl"
+                        value={adSearchQuery}
+                        onChange={(e) => setAdSearchQuery(e.target.value)}
+                        placeholder="Пошук оголошень за назвою, описом або автором..."
+                        className="pl-10 rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                       />
                     </div>
                   </CardHeader>
@@ -434,32 +447,43 @@ const AdminPanel = () => {
                       {filteredAds.map((ad) => (
                         <motion.div 
                           key={ad.id} 
-                          className="flex items-start justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow"
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
                           whileHover={{ scale: 1.01 }}
                         >
-                          <div className="flex-1">
+                          <div className="flex-1 mb-2 sm:mb-0">
                             <div className="flex items-center gap-2 mb-2">
-                              <p className="font-medium">{ad.title}</p>
-                              {ad.is_vip && <Badge className="bg-accent">VIP</Badge>}
+                              <p className="font-medium text-foreground">{ad.title}</p>
+                              {ad.is_vip && <Badge className="bg-accent text-accent-foreground">VIP</Badge>}
                             </div>
                             <p className="text-sm text-muted-foreground mb-2">
                               Автор: {ad.users?.nickname} | 
                               Категорія: {ad.category}/{ad.subcategory}
                             </p>
-                            <p className="text-sm text-muted-foreground mb-2">
-                              {ad.description.substring(0, 150)}...
+                            <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+                              {ad.description}
                             </p>
                             <div className="flex gap-2 text-xs text-muted-foreground">
                               {ad.discord_contact && <span>Discord: {ad.discord_contact}</span>}
                               {ad.telegram_contact && <span>Telegram: {ad.telegram_contact}</span>}
                             </div>
                           </div>
-                          <div className="flex gap-2 ml-4">
+                          <div className="flex gap-2 flex-wrap justify-end ml-0 sm:ml-4">
+                            <Link to={`/advertisement/${ad.id}`}>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="hover:scale-105 transition-transform"
+                                title="Переглянути оголошення"
+                              >
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                            </Link>
                             <Button
                               size="sm"
                               variant={ad.is_vip ? "outline" : "default"}
                               onClick={() => handlePromoteAd(ad.id, ad.is_vip)}
                               className="hover:scale-105 transition-transform"
+                              title={ad.is_vip ? 'Зняти VIP статус' : 'Надати VIP статус'}
                             >
                               <Crown className="w-4 h-4" />
                             </Button>
@@ -468,6 +492,7 @@ const AdminPanel = () => {
                               variant="destructive"
                               onClick={() => handleDeleteAd(ad.id)}
                               className="hover:scale-105 transition-transform"
+                              title="Видалити оголошення"
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>
@@ -481,7 +506,7 @@ const AdminPanel = () => {
 
               {user.role === 'admin' && (
                 <TabsContent value="logs" className="space-y-4">
-                  <Card>
+                  <Card className="shadow-soft">
                     <CardHeader>
                       <CardTitle>Логи дій</CardTitle>
                     </CardHeader>
@@ -490,20 +515,25 @@ const AdminPanel = () => {
                         {logs.map((log) => (
                           <motion.div 
                             key={log.id} 
-                            className="p-4 border rounded-2xl hover:shadow-md transition-shadow"
+                            className="p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
                             whileHover={{ scale: 1.01 }}
                           >
-                            <p className="font-medium">
-                              {log.users?.nickname} виконав дію: <Badge variant="outline">{log.action}</Badge>
+                            <p className="font-medium text-foreground">
+                              <span className="font-bold">{log.users?.nickname || 'Невідомий'}</span> виконав дію: <Badge variant="outline">{log.action}</Badge>
                             </p>
                             {log.target_user && (
                               <p className="text-sm text-muted-foreground">
-                                Цільовий користувач: {log.target_user.nickname}
+                                Цільовий користувач: <span className="font-medium">{log.target_user.nickname}</span>
                               </p>
                             )}
                             <p className="text-xs text-muted-foreground">
-                              {new Date(log.created_at).toLocaleString()}
+                              {new Date(log.created_at).toLocaleString('uk-UA')}
                             </p>
+                            {log.details && Object.keys(log.details).length > 0 && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Деталі: {JSON.stringify(log.details)}
+                              </p>
+                            )}
                           </motion.div>
                         ))}
                       </div>

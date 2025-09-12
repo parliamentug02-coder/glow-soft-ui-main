@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ShoppingCart, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Link } from 'react-router-dom'; // Import Link
 
 interface ProductCardProps {
   id: string;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({
+  id, // Add id to props
   name,
   description,
   price,
@@ -41,12 +43,12 @@ const ProductCard = ({
         {/* Badges */}
         <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
           {isNew && (
-            <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-medium">
+            <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-medium shadow-md">
               Новинка
             </span>
           )}
           {isOnSale && (
-            <span className="bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-xs font-medium">
+            <span className="bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-xs font-medium shadow-md">
               Знижка
             </span>
           )}
@@ -56,7 +58,7 @@ const ProductCard = ({
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background"
+          className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background rounded-full shadow-md"
         >
           <Heart className="w-4 h-4" />
         </Button>
@@ -66,7 +68,7 @@ const ProductCard = ({
           <motion.img
             src={image}
             alt={name}
-            className="w-full h-64 object-cover"
+            className="w-full h-64 object-cover rounded-t-2xl"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           />
@@ -96,18 +98,21 @@ const ProductCard = ({
           {/* Action Buttons */}
           <div className="flex space-x-3">
             <Button 
-              className="flex-1 btn-accent rounded-2xl"
+              className="flex-1 btn-accent rounded-2xl hover:shadow-glow"
               size="lg"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Купити
             </Button>
-            <Button 
-              variant="outline" 
-              className="px-6 rounded-2xl border-border hover:bg-background-secondary"
-            >
-              Детальніше
-            </Button>
+            <Link to={`/advertisement/${id}`} className="flex-1">
+              <Button 
+                variant="outline" 
+                className="w-full px-6 rounded-2xl border-border hover:bg-background-secondary hover:scale-105 transition-transform"
+                size="lg"
+              >
+                Детальніше
+              </Button>
+            </Link>
           </div>
         </div>
       </Card>

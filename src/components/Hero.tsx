@@ -48,8 +48,18 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background-secondary to-background">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-primary opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-accent opacity-20 rounded-full blur-3xl"></div>
+        <motion.div 
+          initial={{ x: -200, y: -200, opacity: 0 }}
+          animate={{ x: 0, y: 0, opacity: 0.2 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-primary rounded-full blur-3xl"
+        ></motion.div>
+        <motion.div 
+          initial={{ x: 200, y: 200, opacity: 0 }}
+          animate={{ x: 0, y: 0, opacity: 0.2 }}
+          transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-accent rounded-full blur-3xl"
+        ></motion.div>
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
@@ -93,11 +103,11 @@ const Hero = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
-                className="pl-12 py-6 text-lg border-0 bg-white/10 backdrop-blur-sm rounded-2xl focus:glow-accent"
+                className="pl-12 py-6 text-lg border-0 bg-white/10 backdrop-blur-sm rounded-2xl focus:glow-accent focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               />
               <Button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent hover:shadow-glow"
               >
                 Пошук
               </Button>
@@ -111,22 +121,21 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Link to="/categories">
-              <Button 
-                size="lg" 
-                className="btn-accent rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform"
-              >
-                Переглянути каталог
-              </Button>
-            </Link>
-            
             <Link to="/create-ad">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-accent/20 hover:border-accent"
+                className="btn-accent rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform hover:shadow-glow"
               >
                 Створити оголошення
+              </Button>
+            </Link>
+            <Link to="/categories">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-accent/20 hover:border-accent hover:bg-accent/5"
+              >
+                Переглянути каталог
               </Button>
             </Link>
           </motion.div>
@@ -162,7 +171,7 @@ const Hero = () => {
 
           {/* VIP Banner */}
           <motion.div
-            className="mt-16 p-6 bg-gradient-accent rounded-3xl border border-accent/20"
+            className="mt-16 p-6 bg-gradient-accent rounded-3xl border border-accent/20 shadow-soft-lg"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
@@ -189,7 +198,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500"
+                  className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500 hover:bg-red-500/5"
                 >
                   <Settings className="w-5 h-5 mr-2" />
                   Адмін панель

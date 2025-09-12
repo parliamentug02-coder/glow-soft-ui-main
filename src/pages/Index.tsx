@@ -5,6 +5,8 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, FileText, Star, TrendingUp } from 'lucide-react';
+import ProductCard from '@/components/ProductCard'; // Import ProductCard
+import { Product, products as staticProducts } from '@/data/products'; // Import static products
 
 const Index = () => {
   const [stats, setStats] = useState({
@@ -163,6 +165,31 @@ const Index = () => {
                 Нових оголошень
               </p>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section (using static data for now) */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Популярні <span className="bg-gradient-accent bg-clip-text text-transparent">товари</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Ознайомтеся з нашими найкращими пропозиціями
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {staticProducts.slice(0, 4).map((product, index) => (
+              <ProductCard key={product.id} {...product} index={index} />
+            ))}
           </div>
         </div>
       </section>

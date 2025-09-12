@@ -217,9 +217,9 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-soft-lg border border-border/50">
         <DialogHeader>
-          <DialogTitle>Редагувати оголошення</DialogTitle>
+          <DialogTitle className="text-2xl font-bold">Редагувати оголошення</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -230,10 +230,10 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                 value={formData.category}
                 onValueChange={(value) => setFormData({ ...formData, category: value, subcategory: '' })}
               >
-                <SelectTrigger className="rounded-2xl">
+                <SelectTrigger className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background">
                   <SelectValue placeholder="Оберіть категорію" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="rounded-2xl shadow-soft">
                   {Object.entries(categories).map(([key, cat]) => (
                     <SelectItem key={key} value={key}>{cat.name}</SelectItem>
                   ))}
@@ -248,10 +248,10 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                 onValueChange={(value) => setFormData({ ...formData, subcategory: value })}
                 disabled={!formData.category}
               >
-                <SelectTrigger className="rounded-2xl">
+                <SelectTrigger className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background">
                   <SelectValue placeholder="Оберіть підкатегорію" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="rounded-2xl shadow-soft">
                   {formData.category && categories[formData.category as keyof typeof categories]?.subcategories.map((sub) => (
                     <SelectItem key={sub.value} value={sub.value}>{sub.name}</SelectItem>
                   ))}
@@ -266,7 +266,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
               id="title"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="rounded-2xl"
+              className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               placeholder="Введіть назву оголошення"
               required
             />
@@ -278,7 +278,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
               id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="rounded-2xl min-h-32"
+              className="rounded-2xl min-h-32 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               placeholder="Детальний опис вашого оголошення"
               required
             />
@@ -293,7 +293,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
               min="0"
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-              className="rounded-2xl"
+              className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               placeholder="Вкажіть ціну (необов'язково)"
             />
           </div>
@@ -305,7 +305,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                 id="discord"
                 value={formData.discord_contact}
                 onChange={(e) => setFormData({ ...formData, discord_contact: e.target.value })}
-                className="rounded-2xl"
+                className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                 placeholder="username#1234"
               />
             </div>
@@ -316,7 +316,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                 id="telegram"
                 value={formData.telegram_contact}
                 onChange={(e) => setFormData({ ...formData, telegram_contact: e.target.value })}
-                className="rounded-2xl"
+                className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                 placeholder="@username"
               />
             </div>
@@ -339,7 +339,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                     type="button"
                     variant="destructive"
                     size="icon"
-                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
                     onClick={() => handleImageRemove(index)}
                   >
                     <X className="w-3 h-3" />
@@ -391,12 +391,12 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
           </div>
 
           <div className="flex justify-end gap-4">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button type="button" variant="outline" onClick={onClose} className="rounded-2xl hover:scale-105 transition-transform">
               Скасувати
             </Button>
             <Button
               type="submit"
-              className="btn-accent"
+              className="btn-accent rounded-2xl hover:shadow-glow"
               disabled={loading}
             >
               {loading ? 'Збереження...' : 'Зберегти зміни'}
