@@ -7,42 +7,46 @@
 @layer base {
   :root {
     /* Base Colors */
-    --background: 0 0% 100%;
-    --background-secondary: 210 14% 97%;
-    --foreground: 214 31% 16%;
+    --background: 0 0% 100%; /* White */
+    --background-secondary: 210 14% 97%; /* Light grey */
+    --foreground: 214 31% 16%; /* Dark grey for text */
 
     /* Card System */
-    --card: 0 0% 100%;
-    --card-foreground: 214 31% 16%;
-    --card-shadow: 210 20% 85%;
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 214 31% 16%; /* Dark grey */
+    --card-shadow: 210 20% 85%; /* Light grey for subtle shadow */
 
     /* Deep Blue Navy Accents */
-    --primary: 211 100% 8%;
-    --primary-light: 213 83% 15%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 211 100% 8%; /* Deep Navy Blue */
+    --primary-light: 213 83% 15%; /* Slightly lighter Navy Blue */
+    --primary-foreground: 0 0% 100%; /* White */
 
     /* Turquoise/Blue Highlights */
-    --accent: 194 100% 42%;
-    --accent-light: 194 86% 58%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 194 100% 42%; /* Vibrant Turquoise */
+    --accent-light: 194 86% 58%; /* Lighter Turquoise */
+    --accent-foreground: 0 0% 100%; /* White */
 
     /* Interactive Elements */
-    --secondary: 210 14% 97%;
-    --secondary-foreground: 214 31% 16%;
+    --secondary: 210 14% 97%; /* Light grey */
+    --secondary-foreground: 214 31% 16%; /* Dark grey */
     
-    --muted: 210 14% 97%;
-    --muted-foreground: 215 19% 35%;
+    --muted: 210 14% 97%; /* Light grey */
+    --muted-foreground: 215 19% 35%; /* Medium grey */
+
+    /* Destructive elements */
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: 0 0% 100%; /* White */
 
     /* Borders and Inputs */
-    --border: 214 20% 91%;
-    --input: 214 20% 91%;
-    --ring: 194 100% 42%;
+    --border: 214 20% 91%; /* Light grey border */
+    --input: 214 20% 91%; /* Light grey input background */
+    --ring: 194 100% 42%; /* Turquoise ring focus */
 
     /* UI Enhancements */
-    --glow: 194 100% 42%;
-    --shadow-soft: 210 20% 85%;
-    --radius: 1.5rem;
-    --radius-lg: 2rem;
+    --glow: 194 100% 42%; /* Turquoise glow */
+    --shadow-soft: 210 20% 85%; /* Soft shadow color */
+    --radius: 1.5rem; /* Default border radius */
+    --radius-lg: 2rem; /* Larger border radius */
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(211 100% 8%), hsl(213 83% 15%));
@@ -53,6 +57,7 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
 
+    /* Sidebar (if used) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -65,18 +70,18 @@
 
   .dark {
     /* Base Colors */
-    --background: 220 20% 10%; /* Very dark desaturated blue */
-    --background-secondary: 220 15% 15%; /* Slightly lighter dark blue/grey */
+    --background: 220 20% 8%; /* Very dark desaturated blue */
+    --background-secondary: 220 15% 12%; /* Slightly lighter dark blue/grey */
     --foreground: 210 20% 90%; /* Light grey for text */
 
     /* Card System */
-    --card: 220 18% 12%; /* Darker background for cards */
+    --card: 220 18% 10%; /* Darker background for cards */
     --card-foreground: 210 20% 90%; /* Light text for cards */
     --card-shadow: 220 20% 5%; /* Very dark for subtle shadow */
 
     /* Deep Blue Navy Accents */
-    --primary: 220 10% 8%; /* Even darker, almost black-blue */
-    --primary-light: 220 10% 12%; /* Slightly lighter primary */
+    --primary: 220 10% 6%; /* Even darker, almost black-blue */
+    --primary-light: 220 10% 10%; /* Slightly lighter primary */
     --primary-foreground: 0 0% 100%; /* White */
 
     /* Turquoise/Blue Highlights */
@@ -91,9 +96,13 @@
     --muted: 220 15% 15%;
     --muted-foreground: 210 10% 60%;
 
+    /* Destructive elements */
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
     /* Borders and Inputs */
-    --border: 220 15% 25%;
-    --input: 220 15% 20%;
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
     --ring: 190 60% 40%; /* New accent color */
 
     /* UI Enhancements */

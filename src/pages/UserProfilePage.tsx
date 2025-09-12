@@ -104,7 +104,7 @@ const UserProfilePage = () => {
         <section className="pt-24 pb-16">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Користувача не знайдено</h1>
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button className="btn-accent">
                 Повернутися
               </Button>
@@ -127,7 +127,7 @@ const UserProfilePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}

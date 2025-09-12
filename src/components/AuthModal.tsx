@@ -60,14 +60,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <h2 className="text-2xl font-bold">
             {isLogin ? 'Вхід' : 'Реєстрація'}
           </h2>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClose}
-            className="rounded-full hover:bg-destructive/10 hover:text-destructive transition-all duration-300"
-          >
-            <X className="w-5 h-5" />
-          </Button>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.2 }}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="rounded-full hover:bg-destructive/10 hover:text-destructive transition-all duration-300"
+            >
+              <X className="w-5 h-5" />
+            </Button>
+          </motion.div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -103,26 +105,30 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <Button
-            type="submit"
-            className="w-full btn-accent rounded-2xl transform-gpu transition-all duration-300 hover:shadow-glow"
-            disabled={loading}
-          >
-            {loading ? 'Завантаження...' : (isLogin ? 'Увійти' : 'Зареєструватися')}
-          </Button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2 }}>
+            <Button
+              type="submit"
+              className="w-full btn-accent rounded-2xl transform-gpu transition-all duration-300 hover:shadow-glow"
+              disabled={loading}
+            >
+              {loading ? 'Завантаження...' : (isLogin ? 'Увійти' : 'Зареєструватися')}
+            </Button>
+          </motion.div>
         </form>
 
         <div className="mt-6 text-center">
           <p className="text-muted-foreground">
             {isLogin ? 'Немає акаунту?' : 'Вже є акаунт?'}
           </p>
-          <Button
-            variant="link"
-            onClick={() => setIsLogin(!isLogin)}
-            className="text-accent hover:text-accent-light transition-all duration-300 hover:scale-105"
-          >
-            {isLogin ? 'Зареєструватися' : 'Увійти'}
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+            <Button
+              variant="link"
+              onClick={() => setIsLogin(!isLogin)}
+              className="text-accent hover:text-accent-light transition-all duration-300"
+            >
+              {isLogin ? 'Зареєструватися' : 'Увійти'}
+            </Button>
+          </motion.div>
         </div>
       </motion.div>
     </div>

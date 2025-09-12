@@ -123,13 +123,15 @@ const SubcategoryPage = () => {
             transition={{ duration: 0.6 }}
           >
             <Link to="/categories">
-              <Button
-                variant="ghost"
-                className="mb-6 hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Назад до категорій
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button
+                  variant="ghost"
+                  className="mb-6"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Назад до категорій
+                </Button>
+              </motion.div>
             </Link>
 
             <div className="mb-8">
@@ -146,7 +148,7 @@ const SubcategoryPage = () => {
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <Card key={i} className="animate-pulse">
+                  <Card key={i} className="animate-pulse shadow-soft-lg border border-border/50">
                     <CardContent className="p-6">
                       <div className="h-48 bg-background-secondary rounded-2xl mb-4"></div>
                       <div className="h-4 bg-background-secondary rounded mb-2"></div>
@@ -246,34 +248,39 @@ const SubcategoryPage = () => {
                             </div>
                             
                             <div className="flex gap-2">
-                              <Button 
-                                size="sm" 
-                                variant="outline" 
-                                className="flex-1 text-xs hover:scale-105 transition-transform"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                }}
-                              >
-                                Детальніше
-                              </Button>
-                              {(ad.discord_contact || ad.telegram_contact) && (
+                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }} className="flex-1">
                                 <Button 
                                   size="sm" 
-                                  className="flex-1 text-xs btn-accent hover:scale-105 transition-transform"
+                                  variant="outline" 
+                                  className="w-full text-xs"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    if (ad.telegram_contact) {
-                                      window.open(`https://t.me/${ad.telegram_contact?.replace('@', '')}`, '_blank');
-                                    } else if (ad.discord_contact) {
-                                      navigator.clipboard.writeText(ad.discord_contact);
-                                    }
                                   }}
                                 >
-                                  <MessageCircle className="w-3 h-3 mr-1" />
-                                  Контакт
+                                  Детальніше
                                 </Button>
+                              </motion.div>
+                              {(ad.discord_contact || ad.telegram_contact) && (
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }} className="flex-1">
+                                  <Button 
+                                    size="sm" 
+                                    className="w-full text-xs btn-accent"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      if (ad.telegram_contact) {
+                                        window.open(`https://t.me/${ad.telegram_contact?.replace('@', '')}`, '_blank');
+                                      } else if (ad.discord_contact) {
+                                        navigator.clipboard.writeText(ad.discord_contact);
+                                        toast.success('Discord скопійовано в буфер обміну');
+                                      }
+                                    }}
+                                  >
+                                    <MessageCircle className="w-3 h-3 mr-1" />
+                                    Контакт
+                                  </Button>
+                                </motion.div>
                               )}
                             </div>
                           </div>
@@ -293,11 +300,13 @@ const SubcategoryPage = () => {
                 <p className="text-muted-foreground mb-6">
                   Станьте першим, хто розмістить оголошення в цій категорії
                 </p>
-                <Link to="/create-ad">
-                  <Button className="btn-accent hover:scale-105 transition-transform">
-                    Створити оголошення
-                  </Button>
-                </Link>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Link to="/create-ad">
+                    <Button className="btn-accent">
+                      Створити оголошення
+                    </Button>
+                  </Link>
+                </motion.div>
               </motion.div>
             )}
           </motion.div>

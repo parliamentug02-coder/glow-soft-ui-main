@@ -103,14 +103,17 @@ const Hero = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
-                className="pl-12 py-6 text-lg border-0 bg-white/10 backdrop-blur-sm rounded-2xl focus:glow-accent focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+                className="pl-12 py-6 text-lg border-0 bg-white/10 dark:bg-background-secondary/50 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+                whileFocus={{ scale: 1.01, boxShadow: "0 0 15px rgba(var(--accent-rgb), 0.3)" }}
               />
-              <Button
-                type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent hover:shadow-glow"
-              >
-                Пошук
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button
+                  type="submit"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent hover:shadow-glow"
+                >
+                  Пошук
+                </Button>
+              </motion.div>
             </form>
           </motion.div>
 
@@ -122,21 +125,25 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Link to="/create-ad">
-              <Button 
-                size="lg" 
-                className="btn-accent rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform hover:shadow-glow"
-              >
-                Створити оголошення
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button 
+                  size="lg" 
+                  className="btn-accent rounded-2xl px-8 py-6 text-lg hover:shadow-glow"
+                >
+                  Створити оголошення
+                </Button>
+              </motion.div>
             </Link>
             <Link to="/categories">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-accent/20 hover:border-accent hover:bg-accent/5"
-              >
-                Переглянути каталог
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-2xl px-8 py-6 text-lg border-accent/20 hover:border-accent hover:bg-accent/5"
+                >
+                  Переглянути каталог
+                </Button>
+              </motion.div>
             </Link>
           </motion.div>
 
@@ -147,26 +154,26 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <div className="text-center">
+            <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }} className="text-center">
               <TrendingUp className="w-8 h-8 mx-auto mb-2 text-accent" />
               <div className="text-2xl font-bold">1000+</div>
               <div className="text-sm text-muted-foreground">Оголошень</div>
-            </div>
-            <div className="text-center">
+            </motion.div>
+            <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }} className="text-center">
               <Users className="w-8 h-8 mx-auto mb-2 text-accent" />
               <div className="text-2xl font-bold">500+</div>
               <div className="text-sm text-muted-foreground">Користувачів</div>
-            </div>
-            <div className="text-center">
+            </motion.div>
+            <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }} className="text-center">
               <Shield className="w-8 h-8 mx-auto mb-2 text-accent" />
               <div className="text-2xl font-bold">100%</div>
               <div className="text-sm text-muted-foreground">Безпека</div>
-            </div>
-            <div className="text-center">
+            </motion.div>
+            <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }} className="text-center">
               <Star className="w-8 h-8 mx-auto mb-2 text-accent" />
               <div className="text-2xl font-bold">24/7</div>
               <div className="text-sm text-muted-foreground">Підтримка</div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* VIP Banner */}
@@ -175,6 +182,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
+            whileHover={{ y: -5, boxShadow: "0 25px 70px -15px hsl(var(--accent) / 0.4)" }}
           >
             <h3 className="text-xl font-bold mb-2 text-accent-foreground">
               Хочете виділити своє оголошення?
@@ -193,12 +201,13 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
               className="mt-8"
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
             >
               <Link to="/admin">
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="rounded-2xl px-8 py-6 text-lg hover:scale-105 transition-transform border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500 hover:bg-red-500/5"
+                  className="rounded-2xl px-8 py-6 text-lg border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500 hover:bg-red-500/5"
                 >
                   <Settings className="w-5 h-5 mr-2" />
                   Адмін панель

@@ -93,7 +93,7 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-soft' : 'bg-background'
+        isScrolled ? 'bg-background/90 backdrop-blur-md shadow-soft' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -105,6 +105,7 @@ const Navbar = () => {
             <motion.div
               className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer"
               whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Skoropad
             </motion.div>
@@ -137,7 +138,7 @@ const Navbar = () => {
                     <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent">
                       {menu.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="bg-background border border-border/50 rounded-2xl shadow-soft z-50">
+                    <NavigationMenuContent className="bg-card border border-border/50 rounded-2xl shadow-soft z-50">
                       <div className="grid w-[400px] gap-3 p-4">
                         {menu.items.map((item) => (
                           <NavigationMenuLink key={item.href} asChild>
@@ -159,26 +160,30 @@ const Navbar = () => {
             {/* Auth Section */}
             {user ? (
               <div className="flex items-center gap-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => window.location.href = '/create-ad'}
-                  className="rounded-2xl hover:scale-105 transition-transform"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Створити оголошення
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => window.location.href = '/create-ad'}
+                    className="rounded-2xl"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Створити оголошення
+                  </Button>
+                </motion.div>
                 
                 {hasPermission(user, ['admin', 'moderator']) && (
                   <Link to="/admin">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="rounded-2xl hover:scale-105 transition-transform"
-                    >
-                      <Settings className="w-4 h-4 mr-2" />
-                      Адмін панель
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-2xl"
+                      >
+                        <Settings className="w-4 h-4 mr-2" />
+                        Адмін панель
+                      </Button>
+                    </motion.div>
                   </Link>
                 )}
                 
@@ -194,55 +199,65 @@ const Navbar = () => {
                     </span>
                   )}
                 </span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={handleLogout}
-                  className="rounded-full hover:scale-105 transition-transform"
-                >
-                  <LogOut className="w-4 h-4" />
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleLogout}
+                    className="rounded-full"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </Button>
+                </motion.div>
               </div>
             ) : (
-              <Button
-                onClick={() => setIsAuthModalOpen(true)}
-                className="btn-accent rounded-2xl hover:scale-105 transition-transform"
-              >
-                <User className="w-4 h-4 mr-2" />
-                Вхід
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="btn-accent rounded-2xl"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  Вхід
+                </Button>
+              </motion.div>
             )}
             
             {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full hover:scale-105 transition-transform"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center">
             {/* Theme Toggle for Mobile */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="lg:hidden mr-2 rounded-full hover:scale-105 transition-transform"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="lg:hidden mr-2 rounded-full"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </Button>
+            </motion.div>
           </div>
         </div>
 
@@ -283,47 +298,54 @@ const Navbar = () => {
                       </span>
                     )}
                   </span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleLogout}
-                    className="hover:scale-105 transition-transform"
-                  >
-                    Вийти
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleLogout}
+                    >
+                      Вийти
+                    </Button>
+                  </motion.div>
                 </div>
                 
-                <Button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.location.href = '/create-ad';
-                  }}
-                  className="w-full btn-accent rounded-2xl hover:scale-105 transition-transform"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Створити оголошення
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.location.href = '/create-ad';
+                    }}
+                    className="w-full btn-accent rounded-2xl"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Створити оголошення
+                  </Button>
+                </motion.div>
                 
                 {hasPermission(user, ['admin', 'moderator']) && (
                   <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
-                    <Button
-                      variant="outline"
-                      className="w-full rounded-2xl hover:scale-105 transition-transform"
-                    >
-                      <Settings className="w-4 h-4 mr-2" />
-                      Адмін панель
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-2xl"
+                      >
+                        <Settings className="w-4 h-4 mr-2" />
+                        Адмін панель
+                      </Button>
+                    </motion.div>
                   </Link>
                 )}
               </div>
             ) : (
-              <Button
-                onClick={() => setIsAuthModalOpen(true)}
-                className="w-full btn-accent rounded-2xl hover:scale-105 transition-transform"
-              >
-                <User className="w-4 h-4 mr-2" />
-                Вхід
-              </Button>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                <Button
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="w-full btn-accent rounded-2xl"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  Вхід
+                </Button>
+              </motion.div>
             )}
 
             <Link

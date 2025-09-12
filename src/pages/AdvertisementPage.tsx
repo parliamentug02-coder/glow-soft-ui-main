@@ -120,7 +120,7 @@ const AdvertisementPage = () => {
         <section className="pt-24 pb-16">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Оголошення не знайдено</h1>
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button className="btn-accent">Повернутися до категорій</Button>
             </motion.div>
           </div>
@@ -141,7 +141,7 @@ const AdvertisementPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button
                 variant="ghost"
                 onClick={() => window.history.back()}
@@ -152,7 +152,7 @@ const AdvertisementPage = () => {
               </Button>
             </motion.div>
 
-            <Card className={`overflow-hidden ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
+            <Card className={`overflow-hidden shadow-soft-lg border border-border/50 ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
               <CardContent className="p-0">
                 {/* Image Gallery */}
                 {advertisement.images && advertisement.images.length > 0 && (
@@ -219,8 +219,8 @@ const AdvertisementPage = () => {
                               }
                             >
                               {advertisement.users?.role === 'vip' ? 'VIP' : 
-                               advertisement.users?.role === 'moderator' ? 'Модератор' : 
-                               advertisement.users?.role === 'admin' ? 'Адмін' : ''}
+                               ad.users?.role === 'moderator' ? 'Модератор' : 
+                               ad.users?.role === 'admin' ? 'Адмін' : ''}
                             </Badge>
                           )}
                         </div>
@@ -239,7 +239,7 @@ const AdvertisementPage = () => {
 
                       {canEdit && (
                         <div className="flex gap-2">
-                          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Button
                               variant="outline"
                               size="sm"
@@ -249,7 +249,7 @@ const AdvertisementPage = () => {
                               Редагувати
                             </Button>
                           </motion.div>
-                          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Button
                               variant="destructive"
                               size="sm"
@@ -286,7 +286,7 @@ const AdvertisementPage = () => {
                     <h2 className="text-xl font-semibold mb-4">Контакти</h2>
                     <div className="flex flex-wrap gap-4">
                       {advertisement.discord_contact && (
-                        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                           <Button 
                             size="lg" 
                             variant="outline" 
@@ -301,7 +301,7 @@ const AdvertisementPage = () => {
                         </motion.div>
                       )}
                       {advertisement.telegram_contact && (
-                        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                           <Button 
                             size="lg" 
                             className="btn-accent"

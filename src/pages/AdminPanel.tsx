@@ -253,7 +253,7 @@ const AdminPanel = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
@@ -276,7 +276,7 @@ const AdminPanel = () => {
             <div className="flex justify-between items-center mb-6">
               <div></div>
               {user.role === 'admin' && (
-                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                   <Button onClick={exportData} variant="outline">
                     <Download className="w-4 h-4 mr-2" />
                     Експорт даних
@@ -395,7 +395,7 @@ const AdminPanel = () => {
                           </div>
                           <div className="flex gap-2 flex-wrap justify-end">
                             <Link to={`/profile/${targetUser.id}`}>
-                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                                 <Button
                                   size="sm"
                                   variant="outline"
@@ -407,7 +407,7 @@ const AdminPanel = () => {
                             </Link>
                             {user.role === 'admin' && targetUser.role !== 'admin' && (
                               <>
-                                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                                   <Button
                                     size="sm"
                                     variant="outline"
@@ -418,7 +418,7 @@ const AdminPanel = () => {
                                     <Crown className="w-4 h-4" />
                                   </Button>
                                 </motion.div>
-                                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                                   <Button
                                     size="sm"
                                     variant="outline"
@@ -432,7 +432,7 @@ const AdminPanel = () => {
                               </>
                             )}
                             {targetUser.role !== 'admin' && (
-                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                                 <Button
                                   size="sm"
                                   variant={targetUser.is_banned ? "default" : "destructive"}
@@ -495,7 +495,7 @@ const AdminPanel = () => {
                           </div>
                           <div className="flex gap-2 flex-wrap justify-end ml-0 sm:ml-4">
                             <Link to={`/advertisement/${ad.id}`}>
-                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                                 <Button
                                   size="sm"
                                   variant="outline"
@@ -505,7 +505,7 @@ const AdminPanel = () => {
                                 </Button>
                               </motion.div>
                             </Link>
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                               <Button
                                 size="sm"
                                 variant={ad.is_vip ? "outline" : "default"}
@@ -515,7 +515,7 @@ const AdminPanel = () => {
                                 <Crown className="w-4 h-4" />
                               </Button>
                             </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                               <Button
                                 size="sm"
                                 variant="destructive"
