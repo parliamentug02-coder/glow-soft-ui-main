@@ -382,6 +382,16 @@ const AdminPanel = () => {
                             </p>
                           </div>
                           <div className="flex gap-2 flex-wrap justify-end">
+                            <Link to={`/profile/${targetUser.id}`}>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="hover:scale-105 transition-transform"
+                                title="Переглянути профіль"
+                              >
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                            </Link>
                             {user.role === 'admin' && targetUser.role !== 'admin' && (
                               <>
                                 <Button

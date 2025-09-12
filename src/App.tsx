@@ -11,6 +11,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import AdminPanel from "./pages/AdminPanel";
 import CreateAdPage from "./pages/CreateAdPage";
 import AdvertisementPage from "./pages/AdvertisementPage";
+import UserProfilePage from "./pages/UserProfilePage"; // Import the new page
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/create-ad" element={<CreateAdPage />} />
             <Route path="/advertisement/:id" element={<AdvertisementPage />} />
+            <Route path="/profile/:userId" element={<UserProfilePage />} /> {/* New route */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
