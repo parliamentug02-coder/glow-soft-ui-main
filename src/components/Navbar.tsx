@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Menu, X, User, LogOut, Plus, Settings } from 'lucide-react';
+import { Search, Menu, X, User, LogOut, Plus, Settings, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
@@ -16,6 +16,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Link } from 'react-router-dom';
+import { useTheme } from 'next-themes'; // Import useTheme
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,15 @@ const Navbar = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { user, setUser } = useAuth();
+  const { theme, setTheme } = useTheme(); // Use the theme hook
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = () => {
     logoutUser();
@@ -36,6 +46,10 @@ const Navbar = () => {
       // TODO: Implement search functionality
       toast.info(`Пошук: ${searchQuery}`);
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   const menuItems = [
@@ -198,10 +212,29 @@ const Navbar = () => {
                 Вхід
               </Button>
             )}
+            
+            {/* Theme Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full hover:scale-105 transition-transform"
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center">
+            {/* Theme Toggle for Mobile */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="lg:hidden mr-2 rounded-full hover:scale-105 transition-transform"
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </Button>
             <Button
               variant="ghost"
               size="icon"
