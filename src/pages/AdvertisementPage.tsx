@@ -120,9 +120,9 @@ const AdvertisementPage = () => {
         <section className="pt-24 pb-16">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Оголошення не знайдено</h1>
-            <Link to="/categories">
-              <Button className="btn-accent hover:scale-105 transition-transform">Повернутися до категорій</Button>
-            </Link>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button className="btn-accent">Повернутися до категорій</Button>
+            </motion.div>
           </div>
         </section>
         <Footer />
@@ -141,14 +141,16 @@ const AdvertisementPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Button
-              variant="ghost"
-              onClick={() => window.history.back()}
-              className="mb-6 hover:scale-105 transition-transform"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Назад
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                onClick={() => window.history.back()}
+                className="mb-6"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Назад
+              </Button>
+            </motion.div>
 
             <Card className={`overflow-hidden ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
               <CardContent className="p-0">
@@ -237,24 +239,26 @@ const AdvertisementPage = () => {
 
                       {canEdit && (
                         <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setIsEditModalOpen(true)}
-                            className="hover:scale-105 transition-transform"
-                          >
-                            <Edit className="w-4 h-4 mr-2" />
-                            Редагувати
-                          </Button>
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            onClick={handleDelete}
-                            className="hover:scale-105 transition-transform"
-                          >
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            Видалити
-                          </Button>
+                          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setIsEditModalOpen(true)}
+                            >
+                              <Edit className="w-4 h-4 mr-2" />
+                              Редагувати
+                            </Button>
+                          </motion.div>
+                          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              onClick={handleDelete}
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              Видалити
+                            </Button>
+                          </motion.div>
                         </div>
                       )}
                     </div>
@@ -282,28 +286,31 @@ const AdvertisementPage = () => {
                     <h2 className="text-xl font-semibold mb-4">Контакти</h2>
                     <div className="flex flex-wrap gap-4">
                       {advertisement.discord_contact && (
-                        <Button 
-                          size="lg" 
-                          variant="outline" 
-                          className="hover:scale-105 transition-transform"
-                          onClick={() => {
-                            navigator.clipboard.writeText(advertisement.discord_contact!);
-                            toast.success('Discord скопійовано в буфер обміну');
-                          }}
-                        >
-                          <MessageCircle className="w-5 h-5 mr-2" />
-                          Discord: {advertisement.discord_contact}
-                        </Button>
+                        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                          <Button 
+                            size="lg" 
+                            variant="outline" 
+                            onClick={() => {
+                              navigator.clipboard.writeText(advertisement.discord_contact!);
+                              toast.success('Discord скопійовано в буфер обміну');
+                            }}
+                          >
+                            <MessageCircle className="w-5 h-5 mr-2" />
+                            Discord: {advertisement.discord_contact}
+                          </Button>
+                        </motion.div>
                       )}
                       {advertisement.telegram_contact && (
-                        <Button 
-                          size="lg" 
-                          className="btn-accent hover:scale-105 transition-transform"
-                          onClick={() => window.open(`https://t.me/${advertisement.telegram_contact?.replace('@', '')}`, '_blank')}
-                        >
-                          <MessageCircle className="w-5 h-5 mr-2" />
-                          Telegram: {advertisement.telegram_contact}
-                        </Button>
+                        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                          <Button 
+                            size="lg" 
+                            className="btn-accent"
+                            onClick={() => window.open(`https://t.me/${advertisement.telegram_contact?.replace('@', '')}`, '_blank')}
+                          >
+                            <MessageCircle className="w-5 h-5 mr-2" />
+                            Telegram: {advertisement.telegram_contact}
+                          </Button>
+                        </motion.div>
                       )}
                     </div>
                   </div>

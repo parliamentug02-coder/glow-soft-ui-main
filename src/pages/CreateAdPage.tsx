@@ -207,14 +207,16 @@ const CreateAdPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-6 hover:scale-105 transition-transform"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Назад
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="mb-6"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Назад
+              </Button>
+            </motion.div>
 
             <h1 className="text-3xl font-bold mb-8">
               Створити <span className="bg-gradient-primary bg-clip-text text-transparent">оголошення</span>
@@ -345,15 +347,17 @@ const CreateAdPage = () => {
                           e.currentTarget.src = 'https://via.placeholder.com/150x100?text=Помилка';
                         }}
                       />
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        size="icon"
-                        className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                        onClick={() => handleImageRemove(index)}
-                      >
-                        <X className="w-3 h-3" />
-                      </Button>
+                      <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => handleImageRemove(index)}
+                        >
+                          <X className="w-3 h-3" />
+                        </Button>
+                      </motion.div>
                     </div>
                   ))}
                   
@@ -369,7 +373,11 @@ const CreateAdPage = () => {
                   {(images.length + uploadingImages.length) < 10 && (
                     <>
                       {/* File upload button */}
-                      <label className="cursor-pointer">
+                      <motion.label 
+                        className="cursor-pointer"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <input
                           type="file"
                           accept="image/*"
@@ -382,22 +390,24 @@ const CreateAdPage = () => {
                             }
                           }}
                         />
-                        <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center hover:scale-105 transition-transform bg-background hover:bg-muted">
+                        <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center transition-transform bg-background hover:bg-muted">
                           <Upload className="w-5 h-5 mb-1 text-muted-foreground" />
                           <span className="text-xs text-muted-foreground">Завантажити</span>
                         </div>
-                      </label>
+                      </motion.label>
                       
                       {/* URL input button */}
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="h-24 rounded-xl border-dashed hover:scale-105 transition-transform flex flex-col"
-                        onClick={handleImageAdd}
-                      >
-                        <Plus className="w-5 h-5 mb-1" />
-                        <span className="text-xs">URL</span>
-                      </Button>
+                      <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="h-24 rounded-xl border-dashed flex flex-col w-full"
+                          onClick={handleImageAdd}
+                        >
+                          <Plus className="w-5 h-5 mb-1" />
+                          <span className="text-xs">URL</span>
+                        </Button>
+                      </motion.div>
                     </>
                   )}
                 </div>
@@ -406,13 +416,15 @@ const CreateAdPage = () => {
                 </p>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full btn-accent rounded-2xl hover:scale-105 transition-transform"
-                disabled={loading}
-              >
-                {loading ? 'Створення...' : 'Створити оголошення'}
-              </Button>
+              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                <Button
+                  type="submit"
+                  className="w-full btn-accent rounded-2xl"
+                  disabled={loading}
+                >
+                  {loading ? 'Створення...' : 'Створити оголошення'}
+                </Button>
+              </motion.div>
             </form>
           </motion.div>
         </div>

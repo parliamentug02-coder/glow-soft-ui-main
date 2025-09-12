@@ -253,14 +253,16 @@ const AdminPanel = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-6 hover:scale-105 transition-transform"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Назад
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="mb-6"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Назад
+              </Button>
+            </motion.div>
 
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-3xl font-bold">
@@ -274,10 +276,12 @@ const AdminPanel = () => {
             <div className="flex justify-between items-center mb-6">
               <div></div>
               {user.role === 'admin' && (
-                <Button onClick={exportData} variant="outline" className="hover:scale-105 transition-transform">
-                  <Download className="w-4 h-4 mr-2" />
-                  Експорт даних
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                  <Button onClick={exportData} variant="outline">
+                    <Download className="w-4 h-4 mr-2" />
+                    Експорт даних
+                  </Button>
+                </motion.div>
               )}
             </div>
 
@@ -305,45 +309,53 @@ const AdminPanel = () => {
 
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <Card className="hover:scale-105 transition-transform shadow-soft">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{stats.totalUsers}</div>
-                      <p className="text-xs text-muted-foreground">Всього зареєстровано</p>
-                    </CardContent>
-                  </Card>
+                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{stats.totalUsers}</div>
+                        <p className="text-xs text-muted-foreground">Всього зареєстровано</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="hover:scale-105 transition-transform shadow-soft">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{stats.totalAds}</div>
-                      <p className="text-xs text-muted-foreground">Всього створено</p>
-                    </CardContent>
-                  </Card>
+                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{stats.totalAds}</div>
+                        <p className="text-xs text-muted-foreground">Всього створено</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="hover:scale-105 transition-transform shadow-soft">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-accent">{stats.vipUsers}</div>
-                      <p className="text-xs text-muted-foreground">Активні VIP</p>
-                    </CardContent>
-                  </Card>
+                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold text-accent">{stats.vipUsers}</div>
+                        <p className="text-xs text-muted-foreground">Активні VIP</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="hover:scale-105 transition-transform shadow-soft">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-destructive">{stats.bannedUsers}</div>
-                      <p className="text-xs text-muted-foreground">Заблоковані користувачі</p>
-                    </CardContent>
-                  </Card>
+                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold text-destructive">{stats.bannedUsers}</div>
+                        <p className="text-xs text-muted-foreground">Заблоковані користувачі</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </div>
               </TabsContent>
 
@@ -383,52 +395,56 @@ const AdminPanel = () => {
                           </div>
                           <div className="flex gap-2 flex-wrap justify-end">
                             <Link to={`/profile/${targetUser.id}`}>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="hover:scale-105 transition-transform"
-                                title="Переглянути профіль"
-                              >
-                                <Eye className="w-4 h-4" />
-                              </Button>
+                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  title="Переглянути профіль"
+                                >
+                                  <Eye className="w-4 h-4" />
+                                </Button>
+                              </motion.div>
                             </Link>
                             {user.role === 'admin' && targetUser.role !== 'admin' && (
                               <>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={() => handleUserAction(targetUser.id, 'role', 'vip')}
-                                  disabled={targetUser.role === 'vip'}
-                                  className="hover:scale-105 transition-transform"
-                                  title="Зробити VIP"
-                                >
-                                  <Crown className="w-4 h-4" />
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={() => handleUserAction(targetUser.id, 'role', 'moderator')}
-                                  disabled={targetUser.role === 'moderator'}
-                                  className="hover:scale-105 transition-transform"
-                                  title="Зробити Модератором"
-                                >
-                                  <Shield className="w-4 h-4" />
-                                </Button>
+                                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleUserAction(targetUser.id, 'role', 'vip')}
+                                    disabled={targetUser.role === 'vip'}
+                                    title="Зробити VIP"
+                                  >
+                                    <Crown className="w-4 h-4" />
+                                  </Button>
+                                </motion.div>
+                                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleUserAction(targetUser.id, 'role', 'moderator')}
+                                    disabled={targetUser.role === 'moderator'}
+                                    title="Зробити Модератором"
+                                  >
+                                    <Shield className="w-4 h-4" />
+                                  </Button>
+                                </motion.div>
                               </>
                             )}
                             {targetUser.role !== 'admin' && (
-                              <Button
-                                size="sm"
-                                variant={targetUser.is_banned ? "default" : "destructive"}
-                                onClick={() => handleUserAction(
-                                  targetUser.id, 
-                                  targetUser.is_banned ? 'unban' : 'ban'
-                                )}
-                                className="hover:scale-105 transition-transform"
-                                title={targetUser.is_banned ? 'Розблокувати' : 'Заблокувати'}
-                              >
-                                <Ban className="w-4 h-4" />
-                              </Button>
+                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                <Button
+                                  size="sm"
+                                  variant={targetUser.is_banned ? "default" : "destructive"}
+                                  onClick={() => handleUserAction(
+                                    targetUser.id, 
+                                    targetUser.is_banned ? 'unban' : 'ban'
+                                  )}
+                                  title={targetUser.is_banned ? 'Розблокувати' : 'Заблокувати'}
+                                >
+                                  <Ban className="w-4 h-4" />
+                                </Button>
+                              </motion.div>
                             )}
                           </div>
                         </motion.div>
@@ -479,33 +495,36 @@ const AdminPanel = () => {
                           </div>
                           <div className="flex gap-2 flex-wrap justify-end ml-0 sm:ml-4">
                             <Link to={`/advertisement/${ad.id}`}>
+                              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  title="Переглянути оголошення"
+                                >
+                                  <Eye className="w-4 h-4" />
+                                </Button>
+                              </motion.div>
+                            </Link>
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                               <Button
                                 size="sm"
-                                variant="outline"
-                                className="hover:scale-105 transition-transform"
-                                title="Переглянути оголошення"
+                                variant={ad.is_vip ? "outline" : "default"}
+                                onClick={() => handlePromoteAd(ad.id, ad.is_vip)}
+                                title={ad.is_vip ? 'Зняти VIP статус' : 'Надати VIP статус'}
                               >
-                                <Eye className="w-4 h-4" />
+                                <Crown className="w-4 h-4" />
                               </Button>
-                            </Link>
-                            <Button
-                              size="sm"
-                              variant={ad.is_vip ? "outline" : "default"}
-                              onClick={() => handlePromoteAd(ad.id, ad.is_vip)}
-                              className="hover:scale-105 transition-transform"
-                              title={ad.is_vip ? 'Зняти VIP статус' : 'Надати VIP статус'}
-                            >
-                              <Crown className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="destructive"
-                              onClick={() => handleDeleteAd(ad.id)}
-                              className="hover:scale-105 transition-transform"
-                              title="Видалити оголошення"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => handleDeleteAd(ad.id)}
+                                title="Видалити оголошення"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </motion.div>
                           </div>
                         </motion.div>
                       ))}

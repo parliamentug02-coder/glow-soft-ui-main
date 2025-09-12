@@ -104,9 +104,11 @@ const UserProfilePage = () => {
         <section className="pt-24 pb-16">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Користувача не знайдено</h1>
-            <Button onClick={() => navigate(-1)} className="btn-accent hover:scale-105 transition-transform">
-              Повернутися
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button className="btn-accent">
+                Повернутися
+              </Button>
+            </motion.div>
           </div>
         </section>
         <Footer />
@@ -125,38 +127,42 @@ const UserProfilePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-6 hover:scale-105 transition-transform"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Назад
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="mb-6"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Назад
+              </Button>
+            </motion.div>
 
-            <Card className="overflow-hidden shadow-soft-lg border border-border/50 mb-8">
-              <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-shrink-0">
-                  <UserIcon className="w-24 h-24 text-muted-foreground" />
-                </div>
-                <div className="text-center md:text-left flex-grow">
-                  <h1 className="text-3xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
-                    {profile.nickname}
-                    {profile.role === 'vip' && <Badge variant="vip" className="shadow-md">VIP</Badge>}
-                    {profile.role === 'moderator' && <Badge variant="secondary" className="shadow-md">Модератор</Badge>}
-                    {profile.role === 'admin' && <Badge variant="admin" className="shadow-md">Адмін</Badge>}
-                  </h1>
-                  <p className="text-muted-foreground mb-2">
-                    Зареєстрований: {new Date(profile.created_at).toLocaleDateString('uk-UA')}
-                  </p>
-                  {profile.is_banned && (
-                    <Badge variant="destructive" className="shadow-md">
-                      Заблокований
-                    </Badge>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
+              <Card className="overflow-hidden shadow-soft-lg border border-border/50 mb-8">
+                <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
+                  <div className="flex-shrink-0">
+                    <UserIcon className="w-24 h-24 text-muted-foreground" />
+                  </div>
+                  <div className="text-center md:text-left flex-grow">
+                    <h1 className="text-3xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+                      {profile.nickname}
+                      {profile.role === 'vip' && <Badge variant="vip" className="shadow-md">VIP</Badge>}
+                      {profile.role === 'moderator' && <Badge variant="secondary" className="shadow-md">Модератор</Badge>}
+                      {profile.role === 'admin' && <Badge variant="admin" className="shadow-md">Адмін</Badge>}
+                    </h1>
+                    <p className="text-muted-foreground mb-2">
+                      Зареєстрований: {new Date(profile.created_at).toLocaleDateString('uk-UA')}
+                    </p>
+                    {profile.is_banned && (
+                      <Badge variant="destructive" className="shadow-md">
+                        Заблокований
+                      </Badge>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             <h2 className="text-2xl font-bold mb-6">Оголошення користувача</h2>
 
