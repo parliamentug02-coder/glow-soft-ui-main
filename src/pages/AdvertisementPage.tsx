@@ -121,7 +121,7 @@ const AdvertisementPage = () => {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Оголошення не знайдено</h1>
             <Link to="/categories">
-              <Button className="btn-accent">Повернутися до категорій</Button>
+              <Button className="btn-accent hover:scale-105 transition-transform">Повернутися до категорій</Button>
             </Link>
           </div>
         </section>

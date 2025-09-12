@@ -111,9 +111,11 @@ const Navbar = () => {
 
           {/* Desktop Navigation Menu */}
           <div className="hidden lg:flex items-center gap-6">
-            <Link to="/categories" className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-105 transform-gpu">
-              Категорії
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+              <Link to="/categories" className="text-muted-foreground hover:text-accent transition-colors">
+                Категорії
+              </Link>
+            </motion.div>
             <NavigationMenu>
               <NavigationMenuList>
                 {menuItems.map((menu) => (
@@ -182,7 +184,7 @@ const Navbar = () => {
                   variant="ghost"
                   size="icon"
                   onClick={handleLogout}
-                  className="rounded-full"
+                  className="rounded-full hover:scale-105 transition-transform"
                 >
                   <LogOut className="w-4 h-4" />
                 </Button>
@@ -190,7 +192,7 @@ const Navbar = () => {
             ) : (
               <Button
                 onClick={() => setIsAuthModalOpen(true)}
-                className="btn-accent rounded-2xl"
+                className="btn-accent rounded-2xl hover:scale-105 transition-transform"
               >
                 <User className="w-4 h-4 mr-2" />
                 Вхід
@@ -252,6 +254,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="sm"
                     onClick={handleLogout}
+                    className="hover:scale-105 transition-transform"
                   >
                     Вийти
                   </Button>
@@ -262,7 +265,7 @@ const Navbar = () => {
                     setIsMenuOpen(false);
                     window.location.href = '/create-ad';
                   }}
-                  className="w-full btn-accent rounded-2xl"
+                  className="w-full btn-accent rounded-2xl hover:scale-105 transition-transform"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Створити оголошення
@@ -272,7 +275,7 @@ const Navbar = () => {
                   <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
                     <Button
                       variant="outline"
-                      className="w-full rounded-2xl"
+                      className="w-full rounded-2xl hover:scale-105 transition-transform"
                     >
                       <Settings className="w-4 h-4 mr-2" />
                       Адмін панель
@@ -283,7 +286,7 @@ const Navbar = () => {
             ) : (
               <Button
                 onClick={() => setIsAuthModalOpen(true)}
-                className="w-full btn-accent rounded-2xl"
+                className="w-full btn-accent rounded-2xl hover:scale-105 transition-transform"
               >
                 <User className="w-4 h-4 mr-2" />
                 Вхід
@@ -292,7 +295,7 @@ const Navbar = () => {
 
             <Link
               to="/categories"
-              className="block rounded-2xl px-4 py-3 bg-background-secondary text-foreground"
+              className="block rounded-2xl px-4 py-3 bg-background-secondary text-foreground hover:scale-105 transition-transform"
               onClick={() => setIsMenuOpen(false)}
             >
               Категорії
@@ -309,7 +312,7 @@ const Navbar = () => {
                     <Link
                       key={item.href}
                       to={item.href}
-                      className="block py-2 px-6 text-muted-foreground hover:text-foreground hover:bg-background-secondary rounded-xl transition-colors"
+                      className="block py-2 px-6 text-muted-foreground hover:text-foreground hover:bg-background-secondary rounded-xl transition-colors hover:scale-[1.02] transform-gpu"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.title}

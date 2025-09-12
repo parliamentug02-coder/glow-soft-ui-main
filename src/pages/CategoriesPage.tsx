@@ -79,14 +79,14 @@ const CategoriesPage = () => {
                 <h2 className="text-xl font-semibold mb-4 text-foreground group-hover:text-accent transition-colors duration-300">{group.title}</h2>
                 <ul className="space-y-2">
                   {group.items.map((item) => (
-                    <li key={item.href}>
+                    <motion.li key={item.href} whileHover={{ x: 5 }}>
                       <Link
                         to={item.href}
-                        className="block rounded-xl px-4 py-3 text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all duration-300 hover:translate-x-2 hover:shadow-sm transform-gpu"
+                        className="block rounded-xl px-4 py-3 text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all duration-300 hover:shadow-sm transform-gpu"
                       >
                         {item.title}
                       </Link>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </motion.article>

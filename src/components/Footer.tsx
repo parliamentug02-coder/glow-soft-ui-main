@@ -58,7 +58,7 @@ const Footer = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors hover:scale-[1.02] inline-block transform-gpu"
                     >
                       {link}
                     </a>
@@ -80,10 +80,10 @@ const Footer = () => {
             © 2024 Skoropad. Всі права захищені.
           </p>
           <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors hover:scale-[1.02] inline-block transform-gpu">
               Політика конфіденційності
             </a>
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors hover:scale-[1.02] inline-block transform-gpu">
               Умови використання
             </a>
           </div>

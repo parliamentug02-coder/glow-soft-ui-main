@@ -294,7 +294,7 @@ const SubcategoryPage = () => {
                   Станьте першим, хто розмістить оголошення в цій категорії
                 </p>
                 <Link to="/create-ad">
-                  <Button className="btn-accent">
+                  <Button className="btn-accent hover:scale-105 transition-transform">
                     Створити оголошення
                   </Button>
                 </Link>
