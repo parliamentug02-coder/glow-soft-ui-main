@@ -16,7 +16,7 @@ import { hasPermission } from '@/lib/auth';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth(); // Отримуємо стан завантаження автентифікації
   const [users, setUsers] = useState([]);
   const [advertisements, setAdvertisements] = useState([]);
   const [logs, setLogs] = useState([]);
@@ -30,6 +30,11 @@ const AdminPanel = () => {
   });
 
   useEffect(() => {
+    if (authLoading) {
+      // Якщо автентифікація ще завантажується, нічого не робимо
+      return;
+    }
+
     if (!user || !hasPermission(user, ['admin', 'moderator'])) {
       navigate('/');
       return;
@@ -43,7 +48,7 @@ const AdminPanel = () => {
     };
     
     initAndFetch();
-  }, [user, navigate]);
+  }, [user, authLoading, navigate]); // Додаємо authLoading до залежностей
 
   const fetchData = async () => {
     setLoading(true);
@@ -208,6 +213,20 @@ const AdminPanel = () => {
     ad.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     ad.users?.nickname.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Показуємо завантаження або повідомлення про доступ, якщо authLoading
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="pt-24 pb-16 text-center">
+          <h1 className="text-2xl font-bold mb-4">Завантаження...</h1>
+          <p className="text-muted-foreground">Перевірка прав доступу</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!user || !hasPermission(user, ['admin', 'moderator'])) {
     return (
