@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ukrainian E-commerce Design System - Soft UI with Deep Blue & Turquoise */
+
+@layer base {
+  :root {
+    /* Base Colors */
+    --background: 0 0% 100%;
+    --background-secondary: 210 14% 97%;
+    --foreground: 214 31% 16%;
+
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 214 31% 16%;
+    --card-shadow: 210 20% 85%;
+
+    /* Deep Blue Navy Accents */
+    --primary: 211 100% 8%;
+    --primary-light: 213 83% 15%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Turquoise/Blue Highlights */
+    --accent: 194 100% 42%;
+    --accent-light: 194 86% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Interactive Elements */
+    --secondary: 210 14% 97%;
+    --secondary-foreground: 214 31% 16%;
+    
+    --muted: 210 14% 97%;
+    --muted-foreground: 215 19% 35%;
+
+    /* Borders and Inputs */
+    --border: 214 20% 91%;
+    --input: 214 20% 91%;
+    --ring: 194 100% 42%;
+
+    /* UI Enhancements */
+    --glow: 194 100% 42%;
+    --shadow-soft: 210 20% 85%;
+    --radius: 1.5rem;
+    --radius-lg: 2rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 8%), hsl(213 83% 15%));
+    --gradient-accent: linear-gradient(135deg, hsl(194 100% 42%), hsl(194 86% 58%));
+    --gradient-soft: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 14% 97%));
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Glow Effects */
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--glow) / 0.3);
+  }
+  
+  .glow-accent-lg {
+    box-shadow: 0 0 40px hsl(var(--glow) / 0.4);
+  }
+
+  /* Soft Shadows */
+  .shadow-soft {
+    box-shadow: 0 10px 40px -10px hsl(var(--shadow-soft) / 0.3);
+  }
+
+  .shadow-soft-lg {
+    box-shadow: 0 20px 60px -15px hsl(var(--shadow-soft) / 0.4);
+  }
+
+  /* Interactive Elements */
+  .interactive-scale {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .interactive-scale:hover {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    border-radius: var(--radius);
+    transition: var(--transition-glow);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 25px hsl(var(--primary) / 0.3);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .btn-accent {
+    background: var(--gradient-accent);
+    color: hsl(var(--accent-foreground));
+    border-radius: var(--radius);
+    transition: var(--transition-glow);
+  }
+
+  .btn-accent:hover {
+    box-shadow: 0 8px 25px hsl(var(--accent) / 0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  /* Card Styles */
+  .card-soft {
+    background: var(--gradient-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+  }
+
+  .card-soft:hover {
+    box-shadow: 0 20px 50px -15px hsl(var(--shadow-soft) / 0.4);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Enhanced animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
