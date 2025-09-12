@@ -54,58 +54,69 @@
     --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Base Colors */
+    --background: 220 20% 10%; /* Very dark desaturated blue */
+    --background-secondary: 220 15% 15%; /* Slightly lighter dark blue/grey */
+    --foreground: 210 20% 90%; /* Light grey for text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Card System */
+    --card: 220 18% 12%; /* Darker background for cards */
+    --card-foreground: 210 20% 90%; /* Light text for cards */
+    --card-shadow: 220 20% 5%; /* Very dark for subtle shadow */
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    /* Deep Blue Navy Accents */
+    --primary: 211 80% 15%; /* Darker deep blue */
+    --primary-light: 213 70% 20%;
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Turquoise/Blue Highlights */
+    --accent: 194 80% 50%; /* Slightly brighter turquoise for contrast */
+    --accent-light: 194 70% 60%;
+    --accent-foreground: 220 20% 10%; /* Dark text on accent */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Interactive Elements */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 90%;
+    
+    --muted: 220 15% 15%;
+    --muted-foreground: 210 10% 60%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Borders and Inputs */
+    --border: 220 15% 25%;
+    --input: 220 15% 20%;
+    --ring: 194 80% 50%; /* Accent color */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* UI Enhancements */
+    --glow: 194 80% 50%; /* Accent color */
+    --shadow-soft: 220 20% 5%; /* Darker shadow color */
+    /* radius values remain the same */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Gradients for Dark Theme */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-light)));
+    --gradient-soft: linear-gradient(135deg, hsl(var(--card)), hsl(var(--background-secondary)));
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Animations remain the same */
+
+    /* Sidebar for Dark Theme */
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 194 80% 50%; /* Accent color for primary sidebar elements */
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 15% 25%;
+    --sidebar-ring: 194 80% 50%;
   }
 }
 
