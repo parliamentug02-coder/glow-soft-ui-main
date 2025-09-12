@@ -5,8 +5,13 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, FileText, Star, TrendingUp } from 'lucide-react';
-import ProductCard from '@/components/ProductCard'; // Import ProductCard
-import { Product, products as staticProducts } from '@/data/products'; // Import static products
+import ProductCard from '@/components/ProductCard';
+import { toast } from '@/components/ui/sonner';
+import { Database } from '@/integrations/supabase/types'; // Import Database type
+
+type Advertisement = Database['public']['Tables']['advertisements']['Row'] & {
+  users?: { nickname: string; role: string } | null;
+};
 
 const Index = () => {
   const [stats, setStats] = useState({
@@ -15,9 +20,12 @@ const Index = () => {
     vipAds: 0,
     recentAds: 0
   });
+  const [popularAds, setPopularAds] = useState<Advertisement[]>([]);
+  const [popularAdsLoading, setPopularAdsLoading] = useState(true);
 
   useEffect(() => {
     fetchStats();
+    fetchPopularAds();
   }, []);
 
   const fetchStats = async () => {
@@ -54,6 +62,29 @@ const Index = () => {
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
+    }
+  };
+
+  const fetchPopularAds = async () => {
+    try {
+      setPopularAdsLoading(true);
+      let { data, error } = await supabase
+        .from('advertisements')
+        .select(`
+          *,
+          users (nickname, role)
+        `)
+        .order('is_vip', { ascending: false }) // Prioritize VIP ads
+        .order('created_at', { ascending: false }) // Then by newest
+        .limit(8); // Fetch a reasonable number for the home page
+
+      if (error) throw error;
+
+      setPopularAds(data || []);
+    } catch (error: any) {
+      toast.error('Помилка завантаження популярних оголошень: ' + error.message);
+    } finally {
+      setPopularAdsLoading(false);
     }
   };
 
@@ -169,7 +200,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products Section (using static data for now) */}
+      {/* Featured Products Section (now dynamic) */}
       <section className="py-16">
         <div className="container mx-auto px-6">
           <motion.div
@@ -179,18 +210,49 @@ const Index = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Популярні <span className="bg-gradient-accent bg-clip-text text-transparent">товари</span>
+              Популярні <span className="bg-gradient-accent bg-clip-text text-transparent">оголошення</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Ознайомтеся з нашими найкращими пропозиціями
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {staticProducts.slice(0, 4).map((product, index) => (
-              <ProductCard key={product.id} {...product} index={index} />
-            ))}
-          </div>
+          {popularAdsLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-background-secondary rounded-3xl h-80 w-full"></div>
+                </div>
+              ))}
+            </div>
+          ) : popularAds.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {popularAds.map((ad, index) => (
+                <ProductCard
+                  key={ad.id}
+                  id={ad.id}
+                  name={ad.title}
+                  description={ad.description}
+                  price={ad.price || 0} // Default to 0 if price is null
+                  image={ad.images?.[0] || 'https://via.placeholder.com/400x300?text=Без+фото'} // Placeholder if no image
+                  isNew={false} // Not directly from DB, can be added if needed
+                  isOnSale={false} // Not directly from DB, can be added if needed
+                  index={index}
+                />
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-8"
+            >
+              <h3 className="text-xl font-semibold mb-2">Поки що немає популярних оголошень</h3>
+              <p className="text-muted-foreground">
+                Створіть перше оголошення, щоб воно з'явилося тут!
+              </p>
+            </motion.div>
+          )}
         </div>
       </section>
 
