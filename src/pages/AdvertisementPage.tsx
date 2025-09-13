@@ -231,8 +231,8 @@ const AdvertisementPage = () => {
                               }
                             >
                               {advertisement.users?.role === 'vip' ? 'VIP' : 
-                               advertisement.users?.role === 'moderator' ? 'Модератор' : 
-                               advertisement.users?.role === 'admin' ? 'Адмін' : ''}
+                               ad.users?.role === 'moderator' ? 'Модератор' : 
+                               ad.users?.role === 'admin' ? 'Адмін' : ''}
                             </Badge>
                           )}
                         </div>
