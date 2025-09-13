@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import ContactButton from '@/components/ContactButton'; // Import ContactButton
 
 interface Advertisement {
@@ -104,7 +104,10 @@ const SubcategoryPage = () => {
 
       setAdvertisements(data || []);
     } catch (error: any) {
-      toast.error('Помилка завантаження оголошень: ' + error.message);
+      toast({
+        title: 'Помилка завантаження оголошень: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
@@ -227,7 +230,9 @@ const SubcategoryPage = () => {
                             
                             <div className="space-y-2 mb-4">
                               <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <span className="font-medium">{ad.users?.nickname}</span>
+                                <Link to={`/profile/${ad.user_id}`} className="font-medium hover:text-accent transition-colors">
+                                  {ad.users?.nickname}
+                                </Link>
                                 {ad.users?.role !== 'user' && (
                                   <Badge 
                                     variant={

@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import { hasPermission } from '@/lib/auth';
 
 const AdminPanel = () => {
@@ -95,7 +95,10 @@ const AdminPanel = () => {
         });
       }
     } catch (error: any) {
-      toast.error('Помилка завантаження даних: ' + error.message);
+      toast({
+        title: 'Помилка завантаження даних: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
@@ -137,10 +140,16 @@ const AdminPanel = () => {
 
       await logAction(`${action}${newRole ? `_${newRole}` : ''}`, targetUserId, { action, newRole });
 
-      toast.success('Дію виконано успішно');
+      toast({
+        title: 'Дію виконано успішно',
+        variant: 'success',
+      });
       fetchData();
     } catch (error: any) {
-      toast.error('Помилка виконання дії: ' + error.message);
+      toast({
+        title: 'Помилка виконання дії: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -157,10 +166,16 @@ const AdminPanel = () => {
 
       await logAction('delete_advertisement', undefined, { advertisement_id: adId });
 
-      toast.success('Оголошення видалено');
+      toast({
+        title: 'Оголошення видалено',
+        variant: 'success',
+      });
       fetchData();
     } catch (error: any) {
-      toast.error('Помилка видалення оголошення: ' + error.message);
+      toast({
+        title: 'Помилка видалення оголошення: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -175,10 +190,16 @@ const AdminPanel = () => {
 
       await logAction(isVip ? 'demote_advertisement' : 'promote_advertisement', undefined, { advertisement_id: adId });
       
-      toast.success(isVip ? 'VIP статус знято' : 'Надано VIP статус');
+      toast({
+        title: isVip ? 'VIP статус знято' : 'Надано VIP статус',
+        variant: 'success',
+      });
       fetchData();
     } catch (error: any) {
-      toast.error('Помилка зміни статусу: ' + error.message);
+      toast({
+        title: 'Помилка зміни статусу: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -199,9 +220,15 @@ const AdminPanel = () => {
       a.click();
       URL.revokeObjectURL(url);
       
-      toast.success('Дані експортовано успішно');
+      toast({
+        title: 'Дані експортовано успішно',
+        variant: 'success',
+      });
     } catch (error: any) {
-      toast.error('Помилка експорту: ' + error.message);
+      toast({
+        title: 'Помилка експорту: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 

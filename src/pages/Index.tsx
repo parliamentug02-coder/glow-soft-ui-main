@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, FileText, Star, TrendingUp } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import { Database } from '@/integrations/supabase/types'; // Import Database type
 
 type Advertisement = Database['public']['Tables']['advertisements']['Row'] & {
@@ -82,7 +82,10 @@ const Index = () => {
 
       setPopularAds(data || []);
     } catch (error: any) {
-      toast.error('Помилка завантаження популярних оголошень: ' + error.message);
+      toast({
+        title: 'Помилка завантаження популярних оголошень: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setPopularAdsLoading(false);
     }

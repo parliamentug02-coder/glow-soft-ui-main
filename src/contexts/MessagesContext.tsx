@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 
 interface Message {
   id: string;
@@ -120,7 +120,10 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       
       setUnreadCount(totalUnread);
     } catch (error: any) {
-      toast.error('Помилка завантаження розмов: ' + error.message);
+      toast({
+        title: 'Помилка завантаження розмов: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
@@ -138,7 +141,10 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       
       setMessages(data || []);
     } catch (error: any) {
-      toast.error('Помилка завантаження повідомлень: ' + error.message);
+      toast({
+        title: 'Помилка завантаження повідомлень: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -160,9 +166,15 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         await fetchMessages(activeConversation);
       }
       
-      toast.success('Повідомлення надіслано');
+      toast({
+        title: 'Повідомлення надіслано',
+        variant: 'success',
+      });
     } catch (error: any) {
-      toast.error('Помилка надсилання повідомлення: ' + error.message);
+      toast({
+        title: 'Помилка надсилання повідомлення: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -177,7 +189,10 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // Refresh conversations to update unread counts
       await fetchConversations();
     } catch (error: any) {
-      toast.error('Помилка позначення повідомлень як прочитаних: ' + error.message);
+      toast({
+        title: 'Помилка позначення повідомлень як прочитаних: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -195,7 +210,8 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         },
         (payload) => {
           // New message received
-          toast.info('Нове повідомлення', {
+          toast({
+            title: 'Нове повідомлення',
             description: payload.new.content,
             action: {
               label: 'Переглянути',

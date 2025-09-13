@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { registerUser, loginUser } from '@/lib/auth';
 import { useAuth } from '@/contexts/AuthContext';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -30,16 +30,25 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         : await registerUser(nickname, password);
 
       if (result.error) {
-        toast.error(result.error);
+        toast({
+          title: result.error,
+          variant: 'destructive',
+        });
       } else {
         setUser(result.user);
-        toast.success(isLogin ? 'Успішний вхід!' : 'Реєстрація успішна!');
+        toast({
+          title: isLogin ? 'Успішний вхід!' : 'Реєстрація успішна!',
+          variant: 'success',
+        });
         onClose();
         setNickname('');
         setPassword('');
       }
     } catch (error) {
-      toast.error('Щось пішло не так');
+      toast({
+        title: 'Щось пішло не так',
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }

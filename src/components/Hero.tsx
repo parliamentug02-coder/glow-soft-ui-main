@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import { useAuth } from '@/contexts/AuthContext';
 import { hasPermission } from '@/lib/auth';
 
@@ -16,7 +16,10 @@ const Hero = () => {
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
-      toast.error('Введіть пошуковий запит');
+      toast({
+        title: 'Введіть пошуковий запит',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -35,12 +38,18 @@ const Hero = () => {
       if (error) throw error;
 
       // Для демонстрації показуємо кількість знайдених результатів
-      toast.success(`Знайдено ${data?.length || 0} оголошень`);
+      toast({
+        title: `Знайдено ${data?.length || 0} оголошень`,
+        variant: 'success',
+      });
       
       // В реальній реалізації тут би був перехід на сторінку результатів пошуку
       console.log('Search results:', data);
     } catch (error: any) {
-      toast.error('Помилка пошуку: ' + error.message);
+      toast({
+        title: 'Помилка пошуку: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -104,7 +113,7 @@ const Hero = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
                 className="pl-12 py-6 text-lg border-0 bg-white/10 dark:bg-background-secondary/50 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-                whileFocus={{ scale: 1.01, boxShadow: "0 0 15px rgba(var(--accent-rgb), 0.3)" }}
+                // whileFocus={{ scale: 1.01, boxShadow: "0 0 15px rgba(var(--accent-rgb), 0.3)" }} // This is not a valid prop for Input
               />
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button

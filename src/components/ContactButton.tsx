@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useMessages } from '@/contexts/MessagesContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 
 interface ContactButtonProps {
   userId: string;
@@ -22,12 +22,18 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
 
   const handleSendMessage = async () => {
     if (!user) {
-      toast.error('Увійдіть в акаунт для відправки повідомлень');
+      toast({
+        title: 'Увійдіть в акаунт для відправки повідомлень',
+        variant: 'destructive',
+      });
       return;
     }
 
     if (!message.trim()) {
-      toast.error('Введіть повідомлення');
+      toast({
+        title: 'Введіть повідомлення',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -35,9 +41,15 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
       await sendMessage(userId, message, advertisementId);
       setIsOpen(false);
       setMessage('');
-      toast.success('Повідомлення надіслано');
+      toast({
+        title: 'Повідомлення надіслано',
+        variant: 'success',
+      });
     } catch (error: any) {
-      toast.error('Помилка надсилання повідомлення: ' + error.message);
+      toast({
+        title: 'Помилка надсилання повідомлення: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -46,7 +58,10 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
         <Button 
           className="btn-accent"
-          onClick={() => toast.info('Увійдіть в акаунт для відправки повідомлень')}
+          onClick={() => toast({
+            title: 'Увійдіть в акаунт для відправки повідомлень',
+            variant: 'info',
+          })}
         >
           <MessageCircle className="w-4 h-4 mr-2" />
           Написати

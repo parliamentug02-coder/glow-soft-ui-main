@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import { useAuth } from '@/contexts/AuthContext';
 import { hasPermission, initializeUserContext } from '@/lib/auth';
 import EditAdModal from '@/components/EditAdModal';
@@ -67,7 +67,10 @@ const AdvertisementPage = () => {
       if (error) throw error;
       setAdvertisement(data);
     } catch (error: any) {
-      toast.error('Помилка завантаження оголошення: ' + error.message);
+      toast({
+        title: 'Помилка завантаження оголошення: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
@@ -86,10 +89,16 @@ const AdvertisementPage = () => {
 
       if (error) throw error;
 
-      toast.success('Оголошення видалено успішно');
+      toast({
+        title: 'Оголошення видалено успішно',
+        variant: 'success',
+      });
       navigate('/');
     } catch (error: any) {
-      toast.error('Помилка видалення: ' + error.message);
+      toast({
+        title: 'Помилка видалення: ' + error.message,
+        variant: 'destructive',
+      });
     }
   };
 
@@ -211,7 +220,9 @@ const AdvertisementPage = () => {
                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-foreground">{advertisement.users?.nickname}</span>
+                          <Link to={`/profile/${advertisement.user_id}`} className="font-medium text-foreground hover:text-accent transition-colors">
+                            {advertisement.users?.nickname}
+                          </Link>
                           {advertisement.users?.role !== 'user' && (
                             <Badge 
                               variant={
@@ -303,8 +314,11 @@ const AdvertisementPage = () => {
                             size="lg" 
                             variant="outline" 
                             onClick={() => {
-                              navigator.copy(advertisement.discord_contact!);
-                              toast.success('Discord скопійовано в буфер обміну');
+                              navigator.clipboard.writeText(advertisement.discord_contact!);
+                              toast({
+                                title: 'Discord скопійовано в буфер обміну',
+                                variant: 'success',
+                              });
                             }}
                           >
                             <MessageCircle className="w-5 h-5 mr-2" />

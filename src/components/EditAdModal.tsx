@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import { useAuth } from '@/contexts/AuthContext';
 
 interface Advertisement {
@@ -101,17 +101,26 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
 
   const handleFileUpload = async (file: File) => {
     if (images.length >= 10) {
-      toast.error('Максимум 10 зображень');
+      toast({
+        title: 'Максимум 10 зображень',
+        variant: 'destructive',
+      });
       return;
     }
 
     if (!file.type.startsWith('image/')) {
-      toast.error('Можна завантажувати лише зображення');
+      toast({
+        title: 'Можна завантажувати лише зображення',
+        variant: 'destructive',
+      });
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      toast.error('Розмір файлу не повинен перевищувати 5MB');
+      toast({
+        title: 'Розмір файлу не повинен перевищувати 5MB',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -134,9 +143,15 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
         .getPublicUrl(fileName);
 
       setImages([...images, publicUrl]);
-      toast.success('Зображення завантажено успішно!');
+      toast({
+        title: 'Зображення завантажено успішно!',
+        variant: 'success',
+      });
     } catch (error: any) {
-      toast.error('Помилка завантаження: ' + error.message);
+      toast({
+        title: 'Помилка завантаження: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       const newUploadingImages = [...uploadingImages];
       newUploadingImages.pop();
@@ -151,7 +166,10 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
         setImages([...images, imageUrl.trim()]);
       }
     } else {
-      toast.error('Максимум 10 зображень');
+      toast({
+        title: 'Максимум 10 зображень',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -176,12 +194,18 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
     if (!user || !advertisement) return;
 
     if (!formData.category || !formData.subcategory || !formData.title || !formData.description) {
-      toast.error('Заповніть всі обов\'язкові поля');
+      toast({
+        title: 'Заповніть всі обов\'язкові поля',
+        variant: 'destructive',
+      });
       return;
     }
 
     if (!formData.discord_contact && !formData.telegram_contact) {
-      toast.error('Вкажіть хоча б один контакт (Discord або Telegram)');
+      toast({
+        title: 'Вкажіть хоча б один контакт (Discord або Telegram)',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -203,11 +227,17 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
 
       if (error) throw error;
 
-      toast.success('Оголошення оновлено успішно!');
+      toast({
+        title: 'Оголошення оновлено успішно!',
+        variant: 'success',
+      });
       onSuccess();
       onClose();
     } catch (error: any) {
-      toast.error('Помилка при оновленні оголошення: ' + error.message);
+      toast({
+        title: 'Помилка при оновленні оголошення: ' + error.message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }

@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import { logoutUser, hasPermission } from '@/lib/auth';
 import AuthModal from './AuthModal';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast'; // Corrected import
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -38,14 +38,20 @@ const Navbar = () => {
   const handleLogout = () => {
     logoutUser();
     setUser(null);
-    toast.success('Ви вийшли з акаунту');
+    toast({
+      title: 'Ви вийшли з акаунту',
+      variant: 'success',
+    });
   };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       // TODO: Implement search functionality
-      toast.info(`Пошук: ${searchQuery}`);
+      toast({
+        title: `Пошук: ${searchQuery}`,
+        variant: 'info',
+      });
     }
   };
 
