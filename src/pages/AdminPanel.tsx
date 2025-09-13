@@ -337,7 +337,7 @@ const AdminPanel = () => {
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                    <Card className="glass-card"> {/* Changed to glass-card */}
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
                       </CardHeader>
@@ -349,7 +349,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                    <Card className="glass-card"> {/* Changed to glass-card */}
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
                       </CardHeader>
@@ -361,7 +361,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                    <Card className="glass-card"> {/* Changed to glass-card */}
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
                       </CardHeader>
@@ -373,7 +373,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                    <Card className="glass-card"> {/* Changed to glass-card */}
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
                       </CardHeader>
@@ -387,7 +387,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="users" className="space-y-4">
-                <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                <Card className="glass-card"> {/* Changed to glass-card */}
                   <CardHeader>
                     <CardTitle>Управління користувачами</CardTitle>
                     <div className="relative">
@@ -486,7 +486,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="ads" className="space-y-4">
-                <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                <Card className="glass-card"> {/* Changed to glass-card */}
                   <CardHeader>
                     <CardTitle>Управління оголошеннями</CardTitle>
                     <div className="relative">
@@ -569,7 +569,7 @@ const AdminPanel = () => {
 
               {user.role === 'admin' && (
                 <TabsContent value="logs" className="space-y-4">
-                  <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
+                  <Card className="glass-card"> {/* Changed to glass-card */}
                     <CardHeader>
                       <CardTitle>Логи дій</CardTitle>
                     </CardHeader>

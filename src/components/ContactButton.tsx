@@ -80,7 +80,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
           </Button>
         </motion.div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-3xl shadow-soft-lg border border-border/50">
+      <DialogContent className="sm:max-w-[425px] glass-card"> {/* Changed to glass-card */}
         <DialogHeader>
           <DialogTitle>Написати {userName}</DialogTitle>
         </DialogHeader>

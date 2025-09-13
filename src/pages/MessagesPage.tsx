@@ -104,7 +104,7 @@ const MessagesPage = () => {
               <span className="bg-gradient-primary bg-clip-text text-transparent">Повідомлення</span>
             </h1>
 
-            <Card className="shadow-soft-lg border border-border/50 rounded-3xl overflow-hidden">
+            <Card className="glass-card overflow-hidden"> {/* Changed to glass-card */}
               <CardContent className="p-0 flex h-[calc(100vh-200px)]">
                 {/* Conversations sidebar */}
                 <div className="w-full md:w-1/3 border-r border-border/50 flex flex-col">

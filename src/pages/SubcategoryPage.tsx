@@ -153,7 +153,7 @@ const SubcategoryPage = () => {
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <Card key={i} className="animate-pulse shadow-soft-lg border border-border/50 rounded-3xl">
+                  <Card key={i} className="animate-pulse glass-card"> {/* Changed to glass-card */}
                     <CardContent className="p-6">
                       <div className="h-48 bg-background-secondary rounded-2xl mb-4"></div>
                       <div className="h-4 bg-background-secondary rounded mb-2"></div>
@@ -172,13 +172,13 @@ const SubcategoryPage = () => {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <Link to={`/advertisement/${ad.id}`}>
-                      <Card className={`group hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer rounded-3xl ${
+                      <Card className={`group glass-card hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer ${
                         ad.is_vip 
                           ? 'border-yellow-400 shadow-yellow-400/20 bg-gradient-to-br from-yellow-50/5 to-yellow-100/10' 
                           : ad.users?.role === 'admin'
                           ? 'border-red-400 shadow-red-400/20 bg-gradient-to-br from-red-50/5 to-red-100/10'
                           : ''
-                      }`}>
+                      }`}> {/* Changed to glass-card */}
                         <CardContent className="p-0">
                           {/* Image */}
                           {ad.images && ad.images.length > 0 && (
