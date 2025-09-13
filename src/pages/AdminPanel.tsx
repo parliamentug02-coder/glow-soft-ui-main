@@ -120,6 +120,7 @@ const AdminPanel = () => {
   };
 
   const handleUserAction = async (targetUserId: string, action: string, newRole?: string) => {
+    console.log('Attempting user action:', action, 'on targetUserId:', targetUserId, 'newRole:', newRole, 'by user:', user);
     try {
       let updateData = {};
       
@@ -136,7 +137,10 @@ const AdminPanel = () => {
         .update(updateData)
         .eq('id', targetUserId);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase user update error:', error);
+        throw error;
+      }
 
       await logAction(`${action}${newRole ? `_${newRole}` : ''}`, targetUserId, { action, newRole });
 
@@ -156,13 +160,17 @@ const AdminPanel = () => {
   const handleDeleteAd = async (adId: string) => {
     if (!confirm('Ви впевнені, що хочете видалити це оголошення?')) return;
 
+    console.log('Attempting to delete ad:', adId, 'by user:', user);
     try {
       const { error } = await supabase
         .from('advertisements')
         .delete()
         .eq('id', adId);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase delete error:', error);
+        throw error;
+      }
 
       await logAction('delete_advertisement', undefined, { advertisement_id: adId });
 
@@ -180,13 +188,17 @@ const AdminPanel = () => {
   };
 
   const handlePromoteAd = async (adId: string, isVip: boolean) => {
+    console.log('Attempting to promote/demote ad:', adId, 'isVip:', isVip, 'by user:', user);
     try {
       const { error } = await supabase
         .from('advertisements')
         .update({ is_vip: !isVip })
         .eq('id', adId);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase update error:', error);
+        throw error;
+      }
 
       await logAction(isVip ? 'demote_advertisement' : 'promote_advertisement', undefined, { advertisement_id: adId });
       
@@ -337,7 +349,7 @@ const AdminPanel = () => {
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card"> {/* Changed to glass-card */}
+                    <Card className="glass-card">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
                       </CardHeader>
@@ -349,7 +361,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card"> {/* Changed to glass-card */}
+                    <Card className="glass-card">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
                       </CardHeader>
@@ -361,7 +373,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card"> {/* Changed to glass-card */}
+                    <Card className="glass-card">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
                       </CardHeader>
@@ -373,7 +385,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card"> {/* Changed to glass-card */}
+                    <Card className="glass-card">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
                       </CardHeader>
@@ -387,7 +399,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="users" className="space-y-4">
-                <Card className="glass-card"> {/* Changed to glass-card */}
+                <Card className="glass-card">
                   <CardHeader>
                     <CardTitle>Управління користувачами</CardTitle>
                     <div className="relative">
@@ -486,7 +498,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="ads" className="space-y-4">
-                <Card className="glass-card"> {/* Changed to glass-card */}
+                <Card className="glass-card">
                   <CardHeader>
                     <CardTitle>Управління оголошеннями</CardTitle>
                     <div className="relative">
@@ -569,7 +581,7 @@ const AdminPanel = () => {
 
               {user.role === 'admin' && (
                 <TabsContent value="logs" className="space-y-4">
-                  <Card className="glass-card"> {/* Changed to glass-card */}
+                  <Card className="glass-card">
                     <CardHeader>
                       <CardTitle>Логи дій</CardTitle>
                     </CardHeader>

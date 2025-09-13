@@ -27,11 +27,13 @@ const simpleHash = (str: string): string => {
 // Set user context for RLS via RPC
 export const setUserContext = async (userId: string | null) => {
   try {
+    console.log('Attempting to set RLS user context for userId:', userId);
     const { error } = await supabase.rpc('set_app_user', { user_id: userId });
     if (error) {
-      console.error('Failed to set user context:', error);
+      console.error('Failed to set user context RPC error:', error);
       throw new Error('Failed to set user context for RLS.');
     }
+    console.log('RLS user context set successfully for userId:', userId);
   } catch (e) {
     console.error('Error calling set_app_user RPC:', e);
     throw e;
