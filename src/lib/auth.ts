@@ -25,12 +25,16 @@ const simpleHash = (str: string): string => {
 };
 
 // Set user context for RLS via RPC
-const setUserContext = async (userId: string) => {
+export const setUserContext = async (userId: string | null) => {
   try {
-    await supabase.rpc('set_app_user', { user_id: userId });
+    const { error } = await supabase.rpc('set_app_user', { user_id: userId });
+    if (error) {
+      console.error('Failed to set user context:', error);
+      throw new Error('Failed to set user context for RLS.');
+    }
   } catch (e) {
-    // Silent fail is OK; policies will deny if not set
-    console.warn('Failed to set user context', e);
+    console.error('Error calling set_app_user RPC:', e);
+    throw e;
   }
 };
 
@@ -123,10 +127,12 @@ export const hasPermission = (user: User | null, requiredRoles: string[]): boole
   return requiredRoles.includes(user.role);
 };
 
-// Initialize user context on app start
+// Initialize user context on app start or user change
 export const initializeUserContext = async () => {
   const user = getCurrentUser();
   if (user) {
     await setUserContext(user.id);
+  } else {
+    await setUserContext(null); // Clear context if no user
   }
 };

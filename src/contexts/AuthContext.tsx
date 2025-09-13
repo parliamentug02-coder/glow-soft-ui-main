@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, getCurrentUser, initializeUserContext } from '@/lib/auth';
+import { User, getCurrentUser, initializeUserContext as libInitializeUserContext } from '@/lib/auth';
 
 interface AuthContextType {
   user: User | null;
@@ -22,13 +22,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const currentUser = getCurrentUser();
-    setUser(currentUser);
-    if (currentUser) {
-      initializeUserContext();
+    const loadAndInitializeUser = async () => {
+      setLoading(true);
+      const currentUser = getCurrentUser();
+      setUser(currentUser); // Set user state
+      await libInitializeUserContext(); // This will now handle setting/clearing context based on currentUser
+      setLoading(false);
+    };
+
+    loadAndInitializeUser();
+  }, []); // Run once on mount
+
+  // This useEffect handles subsequent user changes (e.g., after login/logout from AuthModal)
+  useEffect(() => {
+    if (!loading) { // Only run after initial load is complete
+      libInitializeUserContext(); // Re-initialize context when user state changes
     }
-    setLoading(false);
-  }, []);
+  }, [user, loading]); // Depend on user and loading state
 
   return (
     <AuthContext.Provider value={{ user, setUser, loading }}>
