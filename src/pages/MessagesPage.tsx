@@ -35,7 +35,7 @@ const MessagesPage = () => {
       fetchMessages(activeConversation);
       markAsRead(activeConversation);
     }
-  }, [activeConversation]);
+  }, [activeConversation, fetchMessages, markAsRead]); // Added fetchMessages and markAsRead to dependencies
 
   useEffect(() => {
     scrollToBottom();
@@ -212,10 +212,10 @@ const MessagesPage = () => {
                             animate={{ opacity: 1, y: 0 }}
                             className={`flex ${message.sender_id === user.id ? 'justify-end' : 'justify-start'}`}
                           >
-                            <div className={`max-w-xs md:max-w-md lg:max-w-lg rounded-2xl px-4 py-2 ${
+                            <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 shadow-sm ${
                               message.sender_id === user.id 
-                                ? 'bg-accent text-accent-foreground rounded-br-none' 
-                                : 'bg-background-secondary text-foreground rounded-bl-none'
+                                ? 'bg-accent text-accent-foreground rounded-t-xl rounded-bl-xl rounded-br-md' 
+                                : 'bg-background-secondary text-foreground rounded-t-xl rounded-br-xl rounded-bl-md'
                             }`}>
                               <p className="whitespace-pre-wrap">{message.content}</p>
                               <p className={`text-xs mt-1 ${

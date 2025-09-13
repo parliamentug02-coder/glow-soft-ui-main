@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import { logoutUser, hasPermission } from '@/lib/auth';
 import AuthModal from './AuthModal';
-import { toast } from '@/hooks/use-toast'; // Corrected import
+import { toast } from '@/hooks/use-toast';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'next-themes';
-import MessagesButton from './MessagesButton'; // Import MessagesButton
+import MessagesButton from './MessagesButton';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -126,7 +126,7 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
-                className="pl-10 border-0 bg-background-secondary rounded-2xl focus:glow-accent"
+                className="pl-10 border-0 bg-background-secondary rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               />
             </form>
           </div>
@@ -142,7 +142,7 @@ const Navbar = () => {
               <NavigationMenuList>
                 {menuItems.map((menu) => (
                   <NavigationMenuItem key={menu.title}>
-                    <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent">
+                    <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent hover:bg-background-secondary/50 transition-colors rounded-lg">
                       {menu.title}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="bg-card border border-border/50 rounded-2xl shadow-soft z-50">
@@ -151,7 +151,7 @@ const Navbar = () => {
                           <NavigationMenuLink key={item.href} asChild>
                             <Link
                               to={item.href}
-                              className="block select-none space-y-1 rounded-2xl p-3 leading-none no-underline outline-none transition-colors hover:bg-background-secondary hover:text-foreground focus:bg-background-secondary focus:text-foreground"
+                              className="block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/10 hover:text-accent focus:bg-accent/10 focus:text-accent"
                             >
                               <div className="text-sm font-medium leading-none">{item.title}</div>
                             </Link>
@@ -167,7 +167,7 @@ const Navbar = () => {
             {/* Auth Section */}
             {user ? (
               <div className="flex items-center gap-4">
-                <MessagesButton /> {/* Add MessagesButton here */}
+                <MessagesButton />
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                   <Button
                     variant="ghost"

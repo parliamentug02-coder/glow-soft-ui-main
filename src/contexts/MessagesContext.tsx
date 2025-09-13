@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { toast } from '@/hooks/use-toast'; // Corrected import
+import { toast } from '@/hooks/use-toast';
 
 interface Message {
   id: string;
@@ -66,7 +66,8 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     if (user) {
       fetchConversations();
-      subscribeToNewMessages();
+      const unsubscribe = subscribeToNewMessages();
+      return () => unsubscribe();
     }
   }, [user]);
 
@@ -76,7 +77,6 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     try {
       setLoading(true);
       
-      // Fetch conversations with last message and other user info
       const { data, error } = await supabase
         .from('conversations')
         .select(`
@@ -89,7 +89,6 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
       if (error) throw error;
 
-      // Fetch other user info for each conversation
       const conversationsWithUsers = await Promise.all(
         (data || []).map(async (conv) => {
           const otherUserId = conv.user1_id === user.id ? conv.user2_id : conv.user1_id;
@@ -109,7 +108,6 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
       setConversations(conversationsWithUsers);
       
-      // Calculate unread count
       const totalUnread = conversationsWithUsers.reduce((sum, conv) => {
         if (conv.user1_id === user.id) {
           return sum + conv.user1_unread_count;
@@ -149,8 +147,12 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const sendMessage = async (receiverId: string, content: string, advertisementId?: string) => {
+    if (!user) {
+      toast({ title: 'Ви не авторизовані', variant: 'destructive' });
+      return;
+    }
     try {
-      const { data, error } = await supabase.rpc('send_message', {
+      const { data: newMessageData, error } = await supabase.rpc('send_message', {
         p_receiver_id: receiverId,
         p_content: content,
         p_advertisement_id: advertisementId
@@ -158,13 +160,13 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
       if (error) throw error;
       
-      // Refresh conversations
-      await fetchConversations();
-      
-      // If we're in the active conversation, refresh messages
-      if (activeConversation) {
-        await fetchMessages(activeConversation);
+      // Optimistically add the new message to the active conversation's messages
+      if (activeConversation === newMessageData.conversation_id) {
+        setMessages(prevMessages => [...prevMessages, newMessageData]);
       }
+      
+      // Refresh conversations to update last message and unread counts
+      await fetchConversations();
       
       toast({
         title: 'Повідомлення надіслано',
@@ -197,7 +199,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const subscribeToNewMessages = () => {
-    if (!user) return;
+    if (!user) return () => {};
     
     const channel = supabase.channel('messages-changes')
       .on(
@@ -209,22 +211,26 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           filter: `receiver_id=eq.${user.id}`
         },
         (payload) => {
-          // New message received
+          const newMessage = payload.new as Message;
+          
           toast({
             title: 'Нове повідомлення',
-            description: payload.new.content,
+            description: newMessage.content,
             action: {
               label: 'Переглянути',
               onClick: () => {
-                // Find the conversation and set it as active
-                const conversationId = payload.new.conversation_id;
-                setActiveConversation(conversationId);
-                fetchMessages(conversationId);
+                setActiveConversation(newMessage.conversation_id);
+                // The useEffect in MessagesPage will handle fetching messages and marking as read
               }
             }
           });
           
-          // Refresh conversations
+          // If the new message belongs to the currently active conversation, add it to messages state
+          if (activeConversation === newMessage.conversation_id) {
+            setMessages(prevMessages => [...prevMessages, newMessage]);
+            markAsRead(newMessage.conversation_id); 
+          }
+          
           fetchConversations();
         }
       )
