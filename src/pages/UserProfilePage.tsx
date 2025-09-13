@@ -142,7 +142,7 @@ const UserProfilePage = () => {
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-              <Card className="overflow-hidden shadow-soft-lg border border-border/50 mb-8 rounded-3xl">
+              <Card className="glass-card mb-8"> {/* Changed to glass-card */}
                 <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
                   <div className="flex-shrink-0">
                     <UserIcon className="w-24 h-24 text-muted-foreground" />

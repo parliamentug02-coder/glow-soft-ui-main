@@ -162,7 +162,7 @@ const AdvertisementPage = () => {
               </Button>
             </motion.div>
 
-            <Card className={`overflow-hidden shadow-soft-lg border border-border/50 rounded-3xl ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
+            <Card className={`glass-card ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}> {/* Changed to glass-card */}
               <CardContent className="p-0">
                 {/* Image Gallery */}
                 {advertisement.images && advertisement.images.length > 0 && (
@@ -231,8 +231,8 @@ const AdvertisementPage = () => {
                               }
                             >
                               {advertisement.users?.role === 'vip' ? 'VIP' : 
-                               ad.users?.role === 'moderator' ? 'Модератор' : 
-                               ad.users?.role === 'admin' ? 'Адмін' : ''}
+                               advertisement.users?.role === 'moderator' ? 'Модератор' : 
+                               advertisement.users?.role === 'admin' ? 'Адмін' : ''}
                             </Badge>
                           )}
                         </div>

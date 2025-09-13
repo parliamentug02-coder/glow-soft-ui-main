@@ -100,7 +100,7 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md shadow-soft' : 'bg-transparent'
+        isScrolled ? 'bg-background/60 dark:bg-background/40 backdrop-blur-lg shadow-soft' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -126,7 +126,7 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
-                className="pl-10 border-0 bg-background-secondary/70 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+                className="pl-10 border-0 bg-background-secondary/70 dark:bg-background-secondary/50 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
               />
             </form>
           </div>
@@ -286,7 +286,7 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук оголошень..."
-                className="pl-10 border-0 bg-background-secondary/70 backdrop-blur-sm rounded-2xl"
+                className="pl-10 border-0 bg-background-secondary/70 dark:bg-background-secondary/50 backdrop-blur-sm rounded-2xl"
               />
             </form>
 

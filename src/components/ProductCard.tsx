@@ -39,7 +39,7 @@ const ProductCard = ({
       whileHover={{ y: -8, boxShadow: "0 20px 60px -15px hsl(var(--shadow-soft) / 0.4)" }}
       className="group"
     >
-      <Card className="card-soft overflow-hidden border-0 bg-gradient-soft relative">
+      <Card className="glass-card overflow-hidden relative"> {/* Changed to glass-card */}
         {/* Badges */}
         <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
           {isNew && (

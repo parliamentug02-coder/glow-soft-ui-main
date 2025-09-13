@@ -247,7 +247,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-soft-lg border border-border/50">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto glass-card"> {/* Changed to glass-card */}
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Редагувати оголошення</DialogTitle>
         </DialogHeader>

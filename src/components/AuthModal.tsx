@@ -63,7 +63,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-card rounded-3xl p-8 shadow-soft-lg border border-border/50 w-full max-w-md mx-4 transform-gpu"
+        className="glass-card w-full max-w-md mx-4 transform-gpu" // Changed to glass-card
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">

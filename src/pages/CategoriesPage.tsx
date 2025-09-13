@@ -74,7 +74,7 @@ const CategoriesPage = () => {
                   boxShadow: "0 20px 60px -15px hsl(var(--shadow-soft) / 0.4)"
                 }}
                 transition={{ duration: 0.4, delay: gi * 0.05 }}
-                className="bg-card rounded-3xl p-6 shadow-soft border border-border/50 hover:border-accent/20 transition-all duration-300 transform-gpu cursor-pointer"
+                className="glass-card p-6" // Changed to glass-card
               >
                 <h2 className="text-xl font-semibold mb-4 text-foreground group-hover:text-accent transition-colors duration-300">{group.title}</h2>
                 <ul className="space-y-2">
