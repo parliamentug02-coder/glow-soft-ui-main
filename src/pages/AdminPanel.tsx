@@ -304,7 +304,7 @@ const AdminPanel = () => {
               <div></div>
               {user.role === 'admin' && (
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                  <Button onClick={exportData} variant="outline">
+                  <Button onClick={exportData} variant="outline" className="rounded-2xl hover:shadow-glow">
                     <Download className="w-4 h-4 mr-2" />
                     Експорт даних
                   </Button>
@@ -313,21 +313,21 @@ const AdminPanel = () => {
             </div>
 
             <Tabs defaultValue="stats" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="stats" className="flex items-center gap-2">
+              <TabsList className="grid w-full grid-cols-4 bg-background-secondary rounded-2xl shadow-soft">
+                <TabsTrigger value="stats" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
                   <BarChart3 className="w-4 h-4" />
                   Статистика
                 </TabsTrigger>
-                <TabsTrigger value="users" className="flex items-center gap-2">
+                <TabsTrigger value="users" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
                   <Users className="w-4 h-4" />
                   Користувачі
                 </TabsTrigger>
-                <TabsTrigger value="ads" className="flex items-center gap-2">
+                <TabsTrigger value="ads" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
                   <FileText className="w-4 h-4" />
                   Оголошення
                 </TabsTrigger>
                 {user.role === 'admin' && (
-                  <TabsTrigger value="logs" className="flex items-center gap-2">
+                  <TabsTrigger value="logs" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
                     <Eye className="w-4 h-4" />
                     Логи
                   </TabsTrigger>
@@ -336,8 +336,8 @@ const AdminPanel = () => {
 
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft">
+                  <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
                       </CardHeader>
@@ -348,8 +348,8 @@ const AdminPanel = () => {
                     </Card>
                   </motion.div>
                   
-                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft">
+                  <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
                       </CardHeader>
@@ -360,8 +360,8 @@ const AdminPanel = () => {
                     </Card>
                   </motion.div>
                   
-                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft">
+                  <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
                       </CardHeader>
@@ -372,8 +372,8 @@ const AdminPanel = () => {
                     </Card>
                   </motion.div>
                   
-                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-                    <Card className="shadow-soft">
+                  <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
                       </CardHeader>
@@ -387,7 +387,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="users" className="space-y-4">
-                <Card className="shadow-soft">
+                <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                   <CardHeader>
                     <CardTitle>Управління користувачами</CardTitle>
                     <div className="relative">
@@ -427,6 +427,7 @@ const AdminPanel = () => {
                                   size="sm"
                                   variant="outline"
                                   title="Переглянути профіль"
+                                  className="rounded-xl"
                                 >
                                   <Eye className="w-4 h-4" />
                                 </Button>
@@ -441,6 +442,7 @@ const AdminPanel = () => {
                                     onClick={() => handleUserAction(targetUser.id, 'role', 'vip')}
                                     disabled={targetUser.role === 'vip'}
                                     title="Зробити VIP"
+                                    className="rounded-xl"
                                   >
                                     <Crown className="w-4 h-4" />
                                   </Button>
@@ -452,6 +454,7 @@ const AdminPanel = () => {
                                     onClick={() => handleUserAction(targetUser.id, 'role', 'moderator')}
                                     disabled={targetUser.role === 'moderator'}
                                     title="Зробити Модератором"
+                                    className="rounded-xl"
                                   >
                                     <Shield className="w-4 h-4" />
                                   </Button>
@@ -468,6 +471,7 @@ const AdminPanel = () => {
                                     targetUser.is_banned ? 'unban' : 'ban'
                                   )}
                                   title={targetUser.is_banned ? 'Розблокувати' : 'Заблокувати'}
+                                  className="rounded-xl"
                                 >
                                   <Ban className="w-4 h-4" />
                                 </Button>
@@ -482,7 +486,7 @@ const AdminPanel = () => {
               </TabsContent>
 
               <TabsContent value="ads" className="space-y-4">
-                <Card className="shadow-soft">
+                <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                   <CardHeader>
                     <CardTitle>Управління оголошеннями</CardTitle>
                     <div className="relative">
@@ -527,6 +531,7 @@ const AdminPanel = () => {
                                   size="sm"
                                   variant="outline"
                                   title="Переглянути оголошення"
+                                  className="rounded-xl"
                                 >
                                   <Eye className="w-4 h-4" />
                                 </Button>
@@ -538,6 +543,7 @@ const AdminPanel = () => {
                                 variant={ad.is_vip ? "outline" : "default"}
                                 onClick={() => handlePromoteAd(ad.id, ad.is_vip)}
                                 title={ad.is_vip ? 'Зняти VIP статус' : 'Надати VIP статус'}
+                                className="rounded-xl"
                               >
                                 <Crown className="w-4 h-4" />
                               </Button>
@@ -548,6 +554,7 @@ const AdminPanel = () => {
                                 variant="destructive"
                                 onClick={() => handleDeleteAd(ad.id)}
                                 title="Видалити оголошення"
+                                className="rounded-xl"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -562,7 +569,7 @@ const AdminPanel = () => {
 
               {user.role === 'admin' && (
                 <TabsContent value="logs" className="space-y-4">
-                  <Card className="shadow-soft">
+                  <Card className="shadow-soft-lg border border-border/50 rounded-3xl">
                     <CardHeader>
                       <CardTitle>Логи дій</CardTitle>
                     </CardHeader>
