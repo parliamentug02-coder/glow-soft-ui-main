@@ -36,7 +36,7 @@ const ProductCard = ({
         delay: index * 0.1,
         ease: "easeOut"
       }}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -8, boxShadow: "0 20px 60px -15px hsl(var(--shadow-soft) / 0.4)" }}
       className="group"
     >
       <Card className="card-soft overflow-hidden border-0 bg-gradient-soft relative">

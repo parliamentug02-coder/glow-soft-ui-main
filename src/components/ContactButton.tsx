@@ -57,7 +57,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
     return (
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
         <Button 
-          className="btn-accent"
+          className="btn-accent rounded-2xl"
           onClick={() => toast({
             title: 'Увійдіть в акаунт для відправки повідомлень',
             variant: 'info',
@@ -74,13 +74,13 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-          <Button className="btn-accent">
+          <Button className="btn-accent rounded-2xl">
             <MessageCircle className="w-4 h-4 mr-2" />
             Написати {userName}
           </Button>
         </motion.div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-3xl">
+      <DialogContent className="sm:max-w-[425px] rounded-3xl shadow-soft-lg border border-border/50">
         <DialogHeader>
           <DialogTitle>Написати {userName}</DialogTitle>
         </DialogHeader>
@@ -89,7 +89,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
             placeholder="Ваше повідомлення..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="min-h-[120px] rounded-2xl"
+            className="min-h-[120px] rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
           />
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
             <Button 

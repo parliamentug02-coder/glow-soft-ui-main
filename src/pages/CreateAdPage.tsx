@@ -240,7 +240,7 @@ const CreateAdPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
@@ -263,10 +263,10 @@ const CreateAdPage = () => {
                     value={formData.category}
                     onValueChange={(value) => setFormData({ ...formData, category: value, subcategory: '' })}
                   >
-                    <SelectTrigger className="rounded-2xl">
+                    <SelectTrigger className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background">
                       <SelectValue placeholder="Оберіть категорію" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="rounded-2xl shadow-soft">
                       {Object.entries(categories).map(([key, cat]) => (
                         <SelectItem key={key} value={key}>{cat.name}</SelectItem>
                       ))}
@@ -281,10 +281,10 @@ const CreateAdPage = () => {
                     onValueChange={(value) => setFormData({ ...formData, subcategory: value })}
                     disabled={!formData.category}
                   >
-                    <SelectTrigger className="rounded-2xl">
+                    <SelectTrigger className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background">
                       <SelectValue placeholder="Оберіть підкатегорію" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="rounded-2xl shadow-soft">
                       {formData.category && categories[formData.category as keyof typeof categories]?.subcategories.map((sub) => (
                         <SelectItem key={sub.value} value={sub.value}>{sub.name}</SelectItem>
                       ))}
@@ -311,7 +311,7 @@ const CreateAdPage = () => {
                   id="title"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="rounded-2xl"
+                  className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                   placeholder="Введіть назву оголошення"
                   required
                 />
@@ -323,7 +323,7 @@ const CreateAdPage = () => {
                   id="description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="rounded-2xl min-h-32"
+                  className="rounded-2xl min-h-32 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                   placeholder="Детальний опис вашого оголошення"
                   required
                 />
@@ -338,7 +338,7 @@ const CreateAdPage = () => {
                   min="0"
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="rounded-2xl"
+                  className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                   placeholder="Вкажіть ціну (необов'язково)"
                 />
               </div>
@@ -350,7 +350,7 @@ const CreateAdPage = () => {
                     id="discord"
                     value={formData.discord_contact}
                     onChange={(e) => setFormData({ ...formData, discord_contact: e.target.value })}
-                    className="rounded-2xl"
+                    className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                     placeholder="username#1234"
                   />
                 </div>
@@ -361,7 +361,7 @@ const CreateAdPage = () => {
                     id="telegram"
                     value={formData.telegram_contact}
                     onChange={(e) => setFormData({ ...formData, telegram_contact: e.target.value })}
-                    className="rounded-2xl"
+                    className="rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                     placeholder="@username"
                   />
                 </div>

@@ -108,7 +108,7 @@ const UserProfilePage = () => {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Користувача не знайдено</h1>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-              <Button className="btn-accent">
+              <Button className="btn-accent rounded-2xl" onClick={() => navigate(-1)}>
                 Повернутися
               </Button>
             </motion.div>
@@ -142,7 +142,7 @@ const UserProfilePage = () => {
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
-              <Card className="overflow-hidden shadow-soft-lg border border-border/50 mb-8">
+              <Card className="overflow-hidden shadow-soft-lg border border-border/50 mb-8 rounded-3xl">
                 <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
                   <div className="flex-shrink-0">
                     <UserIcon className="w-24 h-24 text-muted-foreground" />
@@ -179,7 +179,7 @@ const UserProfilePage = () => {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <Link to={`/advertisement/${ad.id}`}>
-                      <Card className={`group hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer ${
+                      <Card className={`group hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer rounded-3xl ${
                         ad.is_vip 
                           ? 'border-yellow-400 shadow-yellow-400/20 bg-gradient-to-br from-yellow-50/5 to-yellow-100/10' 
                           : profile.role === 'admin'
@@ -188,7 +188,7 @@ const UserProfilePage = () => {
                       }`}>
                         <CardContent className="p-0">
                           {ad.images && ad.images.length > 0 && (
-                            <div className="relative overflow-hidden rounded-t-2xl">
+                            <div className="relative overflow-hidden rounded-t-3xl">
                               <img
                                 src={ad.images[0]}
                                 alt={ad.title}

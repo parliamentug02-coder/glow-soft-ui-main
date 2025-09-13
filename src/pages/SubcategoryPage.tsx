@@ -153,7 +153,7 @@ const SubcategoryPage = () => {
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <Card key={i} className="animate-pulse shadow-soft-lg border border-border/50">
+                  <Card key={i} className="animate-pulse shadow-soft-lg border border-border/50 rounded-3xl">
                     <CardContent className="p-6">
                       <div className="h-48 bg-background-secondary rounded-2xl mb-4"></div>
                       <div className="h-4 bg-background-secondary rounded mb-2"></div>
@@ -172,7 +172,7 @@ const SubcategoryPage = () => {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <Link to={`/advertisement/${ad.id}`}>
-                      <Card className={`group hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer ${
+                      <Card className={`group hover:shadow-soft-lg transition-all duration-300 hover:scale-105 transform-gpu cursor-pointer rounded-3xl ${
                         ad.is_vip 
                           ? 'border-yellow-400 shadow-yellow-400/20 bg-gradient-to-br from-yellow-50/5 to-yellow-100/10' 
                           : ad.users?.role === 'admin'
@@ -182,7 +182,7 @@ const SubcategoryPage = () => {
                         <CardContent className="p-0">
                           {/* Image */}
                           {ad.images && ad.images.length > 0 && (
-                            <div className="relative overflow-hidden rounded-t-2xl">
+                            <div className="relative overflow-hidden rounded-t-3xl">
                               <img
                                 src={ad.images[0]}
                                 alt={ad.title}
@@ -259,7 +259,7 @@ const SubcategoryPage = () => {
                                 <Button 
                                   size="sm" 
                                   variant="outline" 
-                                  className="w-full text-xs"
+                                  className="w-full text-xs rounded-2xl"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
@@ -297,7 +297,7 @@ const SubcategoryPage = () => {
                 </p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                   <Link to="/create-ad">
-                    <Button className="btn-accent">
+                    <Button className="btn-accent rounded-2xl">
                       Створити оголошення
                     </Button>
                   </Link>

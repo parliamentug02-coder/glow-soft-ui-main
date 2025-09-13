@@ -235,7 +235,7 @@ const MessagesPage = () => {
                             value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             placeholder="Написати повідомлення..."
-                            className="flex-1 rounded-2xl"
+                            className="flex-1 rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                           />
                           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Button type="submit" className="btn-accent rounded-2xl">

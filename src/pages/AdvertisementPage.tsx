@@ -162,7 +162,7 @@ const AdvertisementPage = () => {
               </Button>
             </motion.div>
 
-            <Card className={`overflow-hidden shadow-soft-lg border border-border/50 ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
+            <Card className={`overflow-hidden shadow-soft-lg border border-border/50 rounded-3xl ${advertisement.is_vip ? 'border-accent shadow-accent/20' : ''}`}>
               <CardContent className="p-0">
                 {/* Image Gallery */}
                 {advertisement.images && advertisement.images.length > 0 && (
@@ -175,7 +175,7 @@ const AdvertisementPage = () => {
                               <img
                                 src={image}
                                 alt={`${advertisement.title} - зображення ${index + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover rounded-t-3xl"
                                 onError={(e) => {
                                   e.currentTarget.src = 'https://via.placeholder.com/800x600?text=Помилка+завантаження';
                                 }}
@@ -257,6 +257,7 @@ const AdvertisementPage = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setIsEditModalOpen(true)}
+                                className="rounded-2xl"
                               >
                                 <Edit className="w-4 h-4 mr-2" />
                                 Редагувати
@@ -267,6 +268,7 @@ const AdvertisementPage = () => {
                                 variant="destructive"
                                 size="sm"
                                 onClick={handleDelete}
+                                className="rounded-2xl"
                               >
                                 <Trash2 className="w-4 h-4 mr-2" />
                                 Видалити
@@ -320,6 +322,7 @@ const AdvertisementPage = () => {
                                 variant: 'success',
                               });
                             }}
+                            className="rounded-2xl"
                           >
                             <MessageCircle className="w-5 h-5 mr-2" />
                             Discord: {advertisement.discord_contact}
@@ -330,7 +333,7 @@ const AdvertisementPage = () => {
                         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                           <Button 
                             size="lg" 
-                            className="btn-accent"
+                            className="btn-accent rounded-2xl"
                             onClick={() => window.open(`https://t.me/${advertisement.telegram_contact?.replace('@', '')}`, '_blank')}
                           >
                             <MessageCircle className="w-5 h-5 mr-2" />
