@@ -17,47 +17,47 @@
     --card-shadow: 210 20% 85%; /* Light grey for subtle shadow */
 
     /* Deep Blue Navy Accents */
-    --primary: 211 100% 8%; /* Deep Navy Blue */
-    --primary-light: 213 83% 15%; /* Slightly lighter Navy Blue */
+    --primary: 211 100% 10%; /* Трохи темніший темно-синій для більшої глибини */
+    --primary-light: 213 83% 18%; /* Трохи світліший темно-синій */
     --primary-foreground: 0 0% 100%; /* White */
 
-    /* Turquoise/Blue Highlights */
-    --accent: 194 100% 42%; /* Vibrant Turquoise */
-    --accent-light: 194 86% 58%; /* Lighter Turquoise */
+    /* Яскраві бірюзові/сині акценти */
+    --accent: 194 100% 38%; /* Більш яскравий бірюзовий */
+    --accent-light: 194 86% 50%; /* Світліший бірюзовий */
     --accent-foreground: 0 0% 100%; /* White */
 
-    /* Interactive Elements */
+    /* Інтерактивні елементи */
     --secondary: 210 14% 97%; /* Light grey */
     --secondary-foreground: 214 31% 16%; /* Dark grey */
     
     --muted: 210 14% 97%; /* Light grey */
     --muted-foreground: 215 19% 35%; /* Medium grey */
 
-    /* Destructive elements */
+    /* Деструктивні елементи */
     --destructive: 0 84.2% 60.2%; /* Red */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    /* Borders and Inputs */
+    /* Межі та поля вводу */
     --border: 214 20% 91%; /* Light grey border */
     --input: 214 20% 91%; /* Light grey input background */
-    --ring: 194 100% 42%; /* Turquoise ring focus */
+    --ring: 194 100% 38%; /* Бірюзове кільце фокусу */
 
-    /* UI Enhancements */
-    --glow: 194 100% 42%; /* Turquoise glow */
-    --shadow-soft: 210 20% 85%; /* Soft shadow color */
-    --radius: 1.5rem; /* Default border radius */
-    --radius-lg: 2rem; /* Larger border radius */
+    /* Покращення інтерфейсу */
+    --glow: 194 100% 38%; /* Бірюзове сяйво */
+    --shadow-soft: 210 20% 75%; /* Більш помітний м'який колір тіні */
+    --radius: 1.5rem; /* Стандартний радіус межі */
+    --radius-lg: 2rem; /* Більший радіус межі */
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(211 100% 8%), hsl(213 83% 15%));
-    --gradient-accent: linear-gradient(135deg, hsl(194 100% 42%), hsl(194 86% 58%));
+    /* Градієнти */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-light)));
     --gradient-soft: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 14% 97%));
 
-    /* Animations */
+    /* Анімації */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
 
-    /* Sidebar (if used) */
+    /* Бічна панель (якщо використовується) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -69,69 +69,63 @@
   }
 
   .dark {
-    /* Base Colors */
-    --background: 220 20% 8%; /* Very dark desaturated blue */
-    --background-secondary: 220 15% 12%; /* Slightly lighter dark blue/grey */
-    --foreground: 210 20% 90%; /* Light grey for text */
+    /* Базові кольори */
+    --background: 220 20% 8%; /* Дуже темний ненасичений синій */
+    --background-secondary: 220 15% 12%; /* Трохи світліший темно-синій/сірий */
+    --foreground: 210 20% 90%; /* Світло-сірий для тексту */
 
-    /* Card System */
-    --card: 220 18% 10%; /* Darker background for cards */
-    --card-foreground: 210 20% 90%; /* Light text for cards */
-    --card-shadow: 220 20% 5%; /* Very dark for subtle shadow */
+    /* Система карток */
+    --card: 220 18% 10%; /* Темніший фон для карток */
+    --card-foreground: 210 20% 90%; /* Світлий текст для карток */
+    --card-shadow: 220 20% 5%; /* Дуже темний для тонкої тіні */
 
-    /* Deep Blue Navy Accents */
-    --primary: 220 10% 6%; /* Even darker, almost black-blue */
-    --primary-light: 220 10% 10%; /* Slightly lighter primary */
+    /* Темно-сині акценти */
+    --primary: 220 10% 6%; /* Ще темніший, майже чорно-синій */
+    --primary-light: 220 10% 10%; /* Трохи світліший основний */
     --primary-foreground: 0 0% 100%; /* White */
 
-    /* Turquoise/Blue Highlights */
-    --accent: 190 60% 40%; /* A deeper, more desaturated teal, less bright blue */
-    --accent-light: 190 60% 50%; /* Lighter version of the new accent */
+    /* Бірюзові/сині акценти */
+    --accent: 190 60% 35%; /* Глибший, більш ненасичений бірюзовий, менш яскравий синій */
+    --accent-light: 190 60% 45%; /* Світліша версія нового акценту */
     --accent-foreground: 0 0% 100%; /* White text on accent for better contrast */
 
-    /* Interactive Elements */
+    /* Інтерактивні елементи */
     --secondary: 220 15% 15%;
     --secondary-foreground: 210 20% 90%;
     
     --muted: 220 15% 15%;
     --muted-foreground: 210 10% 60%;
 
-    /* Destructive elements */
+    /* Деструктивні елементи */
     --destructive: 0 84.2% 60.2%; /* Red */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    /* Borders and Inputs */
+    /* Межі та поля вводу */
     --border: 220 15% 20%;
     --input: 220 15% 18%;
-    --ring: 190 60% 40%; /* New accent color */
+    --ring: 190 60% 35%; /* Новий акцентний колір */
 
-    /* UI Enhancements */
-    --glow: 190 60% 40%; /* New accent color */
-    --shadow-soft: 220 20% 5%; /* Darker shadow color */
-    /* radius values remain the same */
+    /* Покращення інтерфейсу */
+    --glow: 190 60% 35%; /* Новий акцентний колір */
+    --shadow-soft: 220 20% 5%; /* Темніший колір тіні */
+    /* значення радіусу залишаються незмінними */
 
-    /* Gradients for Dark Theme */
+    /* Градієнти для темної теми */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
     --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-light)));
     --gradient-soft: linear-gradient(135deg, hsl(var(--card)), hsl(var(--background-secondary)));
 
-    /* Animations remain the same */
+    /* Анімації залишаються незмінними */
 
-    /* Sidebar for Dark Theme */
+    /* Бічна панель для темної теми */
     --sidebar-background: 220 20% 10%;
     --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 190 60% 40%; /* Accent color for primary sidebar elements */
-    --sidebar-primary-foreground: 0 0% 100%; /* White text on accent */
-    --sidebar-accent: 220 15% 15%; /* Secondary background */
-    --sidebar-accent-foreground: 210 20% 90%; /* Foreground */
+    --sidebar-primary: 190 60% 40%; /* Акцентний колір для основних елементів бічної панелі */
+    --sidebar-primary-foreground: 0 0% 100%; /* Білий текст на акценті */
+    --sidebar-accent: 220 15% 15%; /* Вторинний фон */
+    --sidebar-accent-foreground: 210 20% 90%; /* Передній план */
     --sidebar-border: 220 15% 25%;
     --sidebar-ring: 190 60% 40%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
   }
 
   body {
