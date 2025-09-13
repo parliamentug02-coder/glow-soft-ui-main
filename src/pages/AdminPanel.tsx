@@ -43,6 +43,16 @@ const AdminPanel = () => {
     const initAndFetch = async () => {
       const { initializeUserContext } = await import('@/lib/auth');
       await initializeUserContext();
+      
+      // Debug RLS context
+      console.log("Debugging RLS context...");
+      const { data: rlsDebugData, error: rlsDebugError } = await supabase.rpc('debug_rls_context');
+      if (rlsDebugError) {
+        console.error("Error debugging RLS context:", rlsDebugError);
+      } else {
+        console.log("RLS Context Debug Data:", rlsDebugData);
+      }
+
       fetchData();
     };
     
