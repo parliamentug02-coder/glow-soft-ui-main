@@ -159,6 +159,15 @@
     box-shadow: 0 0 40px hsl(var(--glow) / 0.4);
   }
 
+  /* Stronger glow for interactive elements */
+  .glow-on-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .glow-on-hover:hover {
+    box-shadow: var(--glow-strong);
+    transform: translateY(-2px) scale(1.02);
+  }
+
   /* Soft Shadows */
   .shadow-soft {
     box-shadow: 0 10px 40px -10px hsl(var(--shadow-soft) / 0.3);

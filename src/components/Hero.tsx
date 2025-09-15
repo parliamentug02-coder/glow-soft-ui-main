@@ -117,7 +117,7 @@ const Hero = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button
                   type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent hover:shadow-glow"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 btn-accent hover:shadow-glow glow-on-hover"
                 >
                   Пошук
                 </Button>
@@ -136,7 +136,7 @@ const Hero = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button 
                   size="lg" 
-                  className="btn-accent rounded-2xl px-8 py-6 text-lg hover:shadow-glow"
+                  className="btn-accent rounded-2xl px-8 py-6 text-lg hover:shadow-glow glow-on-hover"
                 >
                   Створити оголошення
                 </Button>
@@ -147,7 +147,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="rounded-2xl px-8 py-6 text-lg border-accent/20 hover:border-accent hover:bg-accent/5"
+                  className="rounded-2xl px-8 py-6 text-lg border-accent/20 hover:border-accent hover:bg-accent/5 glow-on-hover"
                 >
                   Переглянути каталог
                 </Button>
@@ -215,7 +215,7 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="rounded-2xl px-8 py-6 text-lg border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500 hover:bg-red-500/5"
+                  className="rounded-2xl px-8 py-6 text-lg border-red-500/20 hover:border-red-500 text-red-600 hover:text-red-500 hover:bg-red-500/5 glow-on-hover"
                 >
                   <Settings className="w-5 h-5 mr-2" />
                   Адмін панель

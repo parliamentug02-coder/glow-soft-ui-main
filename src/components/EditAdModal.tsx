@@ -369,7 +369,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                     type="button"
                     variant="destructive"
                     size="icon"
-                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
+                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110 glow-on-hover"
                     onClick={() => handleImageRemove(index)}
                   >
                     <X className="w-3 h-3" />
@@ -400,7 +400,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                         }
                       }}
                     />
-                    <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center hover:scale-105 transition-transform bg-background hover:bg-muted">
+                    <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center hover:scale-105 transition-transform bg-background hover:bg-muted glow-on-hover">
                       <Upload className="w-5 h-5 mb-1 text-muted-foreground" />
                       <span className="text-xs text-muted-foreground">Завантажити</span>
                     </div>
@@ -409,7 +409,7 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-24 rounded-xl border-dashed hover:scale-105 transition-transform flex flex-col"
+                    className="h-24 rounded-xl border-dashed hover:scale-105 transition-transform flex flex-col glow-on-hover"
                     onClick={handleImageAdd}
                   >
                     <Plus className="w-5 h-5 mb-1" />
@@ -421,12 +421,12 @@ const EditAdModal: React.FC<EditAdModalProps> = ({ isOpen, onClose, advertisemen
           </div>
 
           <div className="flex justify-end gap-4">
-            <Button type="button" variant="outline" onClick={onClose} className="rounded-2xl hover:scale-105 transition-transform">
+            <Button type="button" variant="outline" onClick={onClose} className="rounded-2xl hover:scale-105 transition-transform glow-on-hover">
               Скасувати
             </Button>
             <Button
               type="submit"
-              className="btn-accent rounded-2xl hover:shadow-glow"
+              className="btn-accent rounded-2xl hover:shadow-glow glow-on-hover"
               disabled={loading}
             >
               {loading ? 'Збереження...' : 'Зберегти зміни'}

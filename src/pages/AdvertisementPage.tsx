@@ -131,7 +131,7 @@ const AdvertisementPage = () => {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Оголошення не знайдено</h1>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-              <Button className="btn-accent">Повернутися до категорій</Button>
+              <Button className="btn-accent glow-on-hover">Повернутися до категорій</Button>
             </motion.div>
           </div>
         </section>
@@ -155,7 +155,7 @@ const AdvertisementPage = () => {
               <Button
                 variant="ghost"
                 onClick={() => window.history.back()}
-                className="mb-6"
+                className="mb-6 glow-on-hover"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Назад
@@ -186,8 +186,8 @@ const AdvertisementPage = () => {
                       </CarouselContent>
                       {advertisement.images.length > 1 && (
                         <>
-                          <CarouselPrevious className="left-4" />
-                          <CarouselNext className="right-4" />
+                          <CarouselPrevious className="left-4 glow-on-hover" />
+                          <CarouselNext className="right-4 glow-on-hover" />
                         </>
                       )}
                     </Carousel>
@@ -231,8 +231,8 @@ const AdvertisementPage = () => {
                               }
                             >
                               {advertisement.users?.role === 'vip' ? 'VIP' : 
-                               advertisement.users?.role === 'moderator' ? 'Модератор' : 
-                               advertisement.users?.role === 'admin' ? 'Адмін' : ''}
+                               ad.users?.role === 'moderator' ? 'Модератор' : 
+                               ad.users?.role === 'admin' ? 'Адмін' : ''}
                             </Badge>
                           )}
                         </div>
@@ -257,7 +257,7 @@ const AdvertisementPage = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setIsEditModalOpen(true)}
-                                className="rounded-2xl"
+                                className="rounded-2xl glow-on-hover"
                               >
                                 <Edit className="w-4 h-4 mr-2" />
                                 Редагувати
@@ -268,7 +268,7 @@ const AdvertisementPage = () => {
                                 variant="destructive"
                                 size="sm"
                                 onClick={handleDelete}
-                                className="rounded-2xl"
+                                className="rounded-2xl glow-on-hover"
                               >
                                 <Trash2 className="w-4 h-4 mr-2" />
                                 Видалити
@@ -322,7 +322,7 @@ const AdvertisementPage = () => {
                                 variant: 'success',
                               });
                             }}
-                            className="rounded-2xl"
+                            className="rounded-2xl glow-on-hover"
                           >
                             <MessageCircle className="w-5 h-5 mr-2" />
                             Discord: {advertisement.discord_contact}
@@ -333,7 +333,7 @@ const AdvertisementPage = () => {
                         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                           <Button 
                             size="lg" 
-                            className="btn-accent rounded-2xl"
+                            className="btn-accent rounded-2xl glow-on-hover"
                             onClick={() => window.open(`https://t.me/${advertisement.telegram_contact?.replace('@', '')}`, '_blank')}
                           >
                             <MessageCircle className="w-5 h-5 mr-2" />

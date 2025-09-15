@@ -108,7 +108,7 @@ const UserProfilePage = () => {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-2xl font-bold mb-4">Користувача не знайдено</h1>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-              <Button className="btn-accent rounded-2xl" onClick={() => navigate(-1)}>
+              <Button className="btn-accent rounded-2xl glow-on-hover" onClick={() => navigate(-1)}>
                 Повернутися
               </Button>
             </motion.div>
@@ -134,7 +134,7 @@ const UserProfilePage = () => {
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
-                className="mb-6"
+                className="mb-6 glow-on-hover"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Назад
@@ -185,7 +185,7 @@ const UserProfilePage = () => {
                           : profile.role === 'admin'
                           ? 'border-red-400 shadow-red-400/20 bg-gradient-to-br from-red-50/5 to-red-100/10'
                           : ''
-                      }`}>
+                      } glow-on-hover`}>
                         <CardContent className="p-0">
                           {ad.images && ad.images.length > 0 && (
                             <div className="relative overflow-hidden rounded-t-3xl">

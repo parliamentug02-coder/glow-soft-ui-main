@@ -306,7 +306,7 @@ const AdminPanel = () => {
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
-                className="mb-6"
+                className="mb-6 glow-on-hover"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Назад
@@ -326,7 +326,7 @@ const AdminPanel = () => {
               <div></div>
               {user.role === 'admin' && (
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                  <Button onClick={exportData} variant="outline" className="rounded-2xl hover:shadow-glow">
+                  <Button onClick={exportData} variant="outline" className="rounded-2xl hover:shadow-glow glow-on-hover">
                     <Download className="w-4 h-4 mr-2" />
                     Експорт даних
                   </Button>
@@ -336,20 +336,20 @@ const AdminPanel = () => {
 
             <Tabs defaultValue="stats" className="space-y-6">
               <TabsList className="grid w-full grid-cols-4 bg-background-secondary rounded-2xl shadow-soft">
-                <TabsTrigger value="stats" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
+                <TabsTrigger value="stats" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300 glow-on-hover">
                   <BarChart3 className="w-4 h-4" />
                   Статистика
                 </TabsTrigger>
-                <TabsTrigger value="users" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
+                <TabsTrigger value="users" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300 glow-on-hover">
                   <Users className="w-4 h-4" />
                   Користувачі
                 </TabsTrigger>
-                <TabsTrigger value="ads" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
+                <TabsTrigger value="ads" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300 glow-on-hover">
                   <FileText className="w-4 h-4" />
                   Оголошення
                 </TabsTrigger>
                 {user.role === 'admin' && (
-                  <TabsTrigger value="logs" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300">
+                  <TabsTrigger value="logs" className="flex items-center gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-glow rounded-2xl transition-all duration-300 glow-on-hover">
                     <Eye className="w-4 h-4" />
                     Логи
                   </TabsTrigger>
@@ -359,7 +359,7 @@ const AdminPanel = () => {
               <TabsContent value="stats" className="space-y-6">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card">
+                    <Card className="glass-card glow-on-hover">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Користувачі</CardTitle>
                       </CardHeader>
@@ -371,7 +371,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card">
+                    <Card className="glass-card glow-on-hover">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Оголошення</CardTitle>
                       </CardHeader>
@@ -383,7 +383,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card">
+                    <Card className="glass-card glow-on-hover">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">VIP користувачі</CardTitle>
                       </CardHeader>
@@ -395,7 +395,7 @@ const AdminPanel = () => {
                   </motion.div>
                   
                   <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="glass-card">
+                    <Card className="glass-card glow-on-hover">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Заблоковані</CardTitle>
                       </CardHeader>
@@ -427,7 +427,7 @@ const AdminPanel = () => {
                       {filteredUsers.map((targetUser) => (
                         <motion.div 
                           key={targetUser.id} 
-                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary glow-on-hover"
                           whileHover={{ scale: 1.01 }}
                         >
                           <div className="flex-1 mb-2 sm:mb-0">
@@ -449,7 +449,7 @@ const AdminPanel = () => {
                                   size="sm"
                                   variant="outline"
                                   title="Переглянути профіль"
-                                  className="rounded-xl"
+                                  className="rounded-xl glow-on-hover"
                                 >
                                   <Eye className="w-4 h-4" />
                                 </Button>
@@ -464,7 +464,7 @@ const AdminPanel = () => {
                                     onClick={() => handleUserAction(targetUser.id, 'role', 'vip')}
                                     disabled={targetUser.role === 'vip'}
                                     title="Зробити VIP"
-                                    className="rounded-xl"
+                                    className="rounded-xl glow-on-hover"
                                   >
                                     <Crown className="w-4 h-4" />
                                   </Button>
@@ -476,7 +476,7 @@ const AdminPanel = () => {
                                     onClick={() => handleUserAction(targetUser.id, 'role', 'moderator')}
                                     disabled={targetUser.role === 'moderator'}
                                     title="Зробити Модератором"
-                                    className="rounded-xl"
+                                    className="rounded-xl glow-on-hover"
                                   >
                                     <Shield className="w-4 h-4" />
                                   </Button>
@@ -493,7 +493,7 @@ const AdminPanel = () => {
                                     targetUser.is_banned ? 'unban' : 'ban'
                                   )}
                                   title={targetUser.is_banned ? 'Розблокувати' : 'Заблокувати'}
-                                  className="rounded-xl"
+                                  className="rounded-xl glow-on-hover"
                                 >
                                   <Ban className="w-4 h-4" />
                                 </Button>
@@ -526,7 +526,7 @@ const AdminPanel = () => {
                       {filteredAds.map((ad) => (
                         <motion.div 
                           key={ad.id} 
-                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary glow-on-hover"
                           whileHover={{ scale: 1.01 }}
                         >
                           <div className="flex-1 mb-2 sm:mb-0">
@@ -553,7 +553,7 @@ const AdminPanel = () => {
                                   size="sm"
                                   variant="outline"
                                   title="Переглянути оголошення"
-                                  className="rounded-xl"
+                                  className="rounded-xl glow-on-hover"
                                 >
                                   <Eye className="w-4 h-4" />
                                 </Button>
@@ -565,7 +565,7 @@ const AdminPanel = () => {
                                 variant={ad.is_vip ? "outline" : "default"}
                                 onClick={() => handlePromoteAd(ad.id, ad.is_vip)}
                                 title={ad.is_vip ? 'Зняти VIP статус' : 'Надати VIP статус'}
-                                className="rounded-xl"
+                                className="rounded-xl glow-on-hover"
                               >
                                 <Crown className="w-4 h-4" />
                               </Button>
@@ -576,7 +576,7 @@ const AdminPanel = () => {
                                 variant="destructive"
                                 onClick={() => handleDeleteAd(ad.id)}
                                 title="Видалити оголошення"
-                                className="rounded-xl"
+                                className="rounded-xl glow-on-hover"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -600,7 +600,7 @@ const AdminPanel = () => {
                         {logs.map((log) => (
                           <motion.div 
                             key={log.id} 
-                            className="p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary"
+                            className="p-4 border rounded-2xl hover:shadow-md transition-shadow bg-background-secondary glow-on-hover"
                             whileHover={{ scale: 1.01 }}
                           >
                             <p className="font-medium text-foreground">

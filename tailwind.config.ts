@@ -90,7 +90,8 @@ export default {
 				'soft': '0 10px 40px -10px hsl(var(--shadow-soft) / 0.3)',
 				'soft-lg': '0 20px 60px -15px hsl(var(--shadow-soft) / 0.4)',
 				'glow': '0 0 20px hsl(var(--glow) / 0.3)',
-				'glow-lg': '0 0 40px hsl(var(--glow) / 0.4)'
+				'glow-lg': '0 0 40px hsl(var(--glow) / 0.4)',
+				'glow-strong': '0 0 60px hsl(var(--glow) / 0.5), 0 0 30px hsl(var(--glow) / 0.3)' // Додано сильніше світіння
 			},
 			spacing: {
 				'18': '4.5rem',

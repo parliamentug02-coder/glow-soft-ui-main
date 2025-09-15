@@ -74,7 +74,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="rounded-full hover:bg-destructive/10 hover:text-destructive transition-all duration-300"
+              className="rounded-full hover:bg-destructive/10 hover:text-destructive transition-all duration-300 glow-on-hover"
             >
               <X className="w-5 h-5" />
             </Button>
@@ -117,7 +117,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2 }}>
             <Button
               type="submit"
-              className="w-full btn-accent rounded-2xl transform-gpu transition-all duration-300 hover:shadow-glow"
+              className="w-full btn-accent rounded-2xl transform-gpu transition-all duration-300 hover:shadow-glow glow-on-hover"
               disabled={loading}
             >
               {loading ? 'Завантаження...' : (isLogin ? 'Увійти' : 'Зареєструватися')}
@@ -133,7 +133,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <Button
               variant="link"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-accent hover:text-accent-light transition-all duration-300"
+              className="text-accent hover:text-accent-light transition-all duration-300 glow-on-hover"
             >
               {isLogin ? 'Зареєструватися' : 'Увійти'}
             </Button>

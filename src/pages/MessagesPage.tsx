@@ -93,7 +93,7 @@ const MessagesPage = () => {
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
-                className="mb-6"
+                className="mb-6 glow-on-hover"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Назад
@@ -149,7 +149,7 @@ const MessagesPage = () => {
                               whileHover={{ backgroundColor: 'hsl(var(--background-secondary))' }}
                               className={`p-4 cursor-pointer transition-colors ${
                                 activeConversation === conversation.id ? 'bg-background-secondary' : ''
-                              }`}
+                              } glow-on-hover`}
                               onClick={() => setActiveConversation(conversation.id)}
                             >
                               <div className="flex items-center space-x-3">
@@ -238,7 +238,7 @@ const MessagesPage = () => {
                             className="flex-1 rounded-2xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                           />
                           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Button type="submit" className="btn-accent rounded-2xl">
+                            <Button type="submit" className="btn-accent rounded-2xl glow-on-hover">
                               <Send className="w-4 h-4" />
                             </Button>
                           </motion.div>

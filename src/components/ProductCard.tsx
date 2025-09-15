@@ -58,7 +58,7 @@ const ProductCard = ({
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background rounded-full shadow-md"
+          className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background rounded-full shadow-md glow-on-hover"
         >
           <Heart className="w-4 h-4" />
         </Button>
@@ -98,7 +98,7 @@ const ProductCard = ({
           {/* Action Buttons */}
           <div className="flex space-x-3">
             <Button 
-              className="flex-1 btn-accent rounded-2xl hover:shadow-glow"
+              className="flex-1 btn-accent rounded-2xl hover:shadow-glow glow-on-hover"
               size="lg"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
@@ -107,7 +107,7 @@ const ProductCard = ({
             <Link to={`/advertisement/${id}`} className="flex-1">
               <Button 
                 variant="outline" 
-                className="w-full px-6 rounded-2xl border-border hover:bg-background-secondary hover:scale-105 transition-transform"
+                className="w-full px-6 rounded-2xl border-border hover:bg-background-secondary hover:scale-105 transition-transform glow-on-hover"
                 size="lg"
               >
                 Детальніше

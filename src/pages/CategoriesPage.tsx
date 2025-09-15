@@ -82,7 +82,7 @@ const CategoriesPage = () => {
                     <motion.li key={item.href} whileHover={{ x: 5 }}>
                       <Link
                         to={item.href}
-                        className="block rounded-xl px-4 py-3 text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all duration-300 hover:shadow-sm transform-gpu"
+                        className="block rounded-xl px-4 py-3 text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all duration-300 hover:shadow-sm transform-gpu glow-on-hover"
                       >
                         {item.title}
                       </Link>

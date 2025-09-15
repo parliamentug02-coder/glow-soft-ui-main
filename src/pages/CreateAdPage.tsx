@@ -244,7 +244,7 @@ const CreateAdPage = () => {
               <Button
                 variant="ghost"
                 onClick={() => navigate(-1)}
-                className="mb-6"
+                className="mb-6 glow-on-hover"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Назад
@@ -385,7 +385,7 @@ const CreateAdPage = () => {
                           type="button"
                           variant="destructive"
                           size="icon"
-                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity glow-on-hover"
                           onClick={() => handleImageRemove(index)}
                         >
                           <X className="w-3 h-3" />
@@ -423,7 +423,7 @@ const CreateAdPage = () => {
                             }
                           }}
                         />
-                        <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center transition-transform bg-background hover:bg-muted">
+                        <div className="h-24 rounded-xl border-dashed border-2 border-border hover:border-accent flex flex-col items-center justify-center transition-transform bg-background hover:bg-muted glow-on-hover">
                           <Upload className="w-5 h-5 mb-1 text-muted-foreground" />
                           <span className="text-xs text-muted-foreground">Завантажити</span>
                         </div>
@@ -434,7 +434,7 @@ const CreateAdPage = () => {
                         <Button
                           type="button"
                           variant="outline"
-                          className="h-24 rounded-xl border-dashed flex flex-col w-full"
+                          className="h-24 rounded-xl border-dashed flex flex-col w-full glow-on-hover"
                           onClick={handleImageAdd}
                         >
                           <Plus className="w-5 h-5 mb-1" />
@@ -452,7 +452,7 @@ const CreateAdPage = () => {
               <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                 <Button
                   type="submit"
-                  className="w-full btn-accent rounded-2xl"
+                  className="w-full btn-accent rounded-2xl glow-on-hover"
                   disabled={loading}
                 >
                   {loading ? 'Створення...' : 'Створити оголошення'}

@@ -131,7 +131,7 @@ const SubcategoryPage = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button
                   variant="ghost"
-                  className="mb-6"
+                  className="mb-6 glow-on-hover"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Назад до категорій
@@ -178,7 +178,7 @@ const SubcategoryPage = () => {
                           : ad.users?.role === 'admin'
                           ? 'border-red-400 shadow-red-400/20 bg-gradient-to-br from-red-50/5 to-red-100/10'
                           : ''
-                      }`}> {/* Changed to glass-card */}
+                      } glow-on-hover`}> {/* Changed to glass-card */}
                         <CardContent className="p-0">
                           {/* Image */}
                           {ad.images && ad.images.length > 0 && (
@@ -259,7 +259,7 @@ const SubcategoryPage = () => {
                                 <Button 
                                   size="sm" 
                                   variant="outline" 
-                                  className="w-full text-xs rounded-2xl"
+                                  className="w-full text-xs rounded-2xl glow-on-hover"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
@@ -297,7 +297,7 @@ const SubcategoryPage = () => {
                 </p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                   <Link to="/create-ad">
-                    <Button className="btn-accent rounded-2xl">
+                    <Button className="btn-accent rounded-2xl glow-on-hover">
                       Створити оголошення
                     </Button>
                   </Link>

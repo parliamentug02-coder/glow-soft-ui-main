@@ -57,7 +57,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
     return (
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
         <Button 
-          className="btn-accent rounded-2xl"
+          className="btn-accent rounded-2xl glow-on-hover"
           onClick={() => toast({
             title: 'Увійдіть в акаунт для відправки повідомлень',
             variant: 'info',
@@ -74,7 +74,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-          <Button className="btn-accent rounded-2xl">
+          <Button className="btn-accent rounded-2xl glow-on-hover">
             <MessageCircle className="w-4 h-4 mr-2" />
             Написати {userName}
           </Button>
@@ -94,7 +94,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ userId, userName, adverti
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
             <Button 
               onClick={handleSendMessage} 
-              className="w-full btn-accent rounded-2xl"
+              className="w-full btn-accent rounded-2xl glow-on-hover"
               disabled={!message.trim()}
             >
               <Send className="w-4 h-4 mr-2" />

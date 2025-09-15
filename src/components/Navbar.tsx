@@ -173,7 +173,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="sm"
                     onClick={() => window.location.href = '/create-ad'}
-                    className="rounded-2xl"
+                    className="rounded-2xl glow-on-hover"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Створити оголошення
@@ -186,7 +186,7 @@ const Navbar = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="rounded-2xl"
+                        className="rounded-2xl glow-on-hover"
                       >
                         <Settings className="w-4 h-4 mr-2" />
                         Адмін панель
@@ -212,7 +212,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     onClick={handleLogout}
-                    className="rounded-full"
+                    className="rounded-full glow-on-hover"
                   >
                     <LogOut className="w-4 h-4" />
                   </Button>
@@ -222,7 +222,7 @@ const Navbar = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button
                   onClick={() => setIsAuthModalOpen(true)}
-                  className="btn-accent rounded-2xl"
+                  className="btn-accent rounded-2xl glow-on-hover"
                 >
                   <User className="w-4 h-4 mr-2" />
                   Вхід
@@ -236,7 +236,7 @@ const Navbar = () => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="rounded-full"
+                className="rounded-full glow-on-hover"
               >
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </Button>
@@ -251,7 +251,7 @@ const Navbar = () => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="lg:hidden mr-2 rounded-full"
+                className="lg:hidden mr-2 rounded-full glow-on-hover"
               >
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </Button>
@@ -260,7 +260,7 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden"
+                className="lg:hidden glow-on-hover"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -311,6 +311,7 @@ const Navbar = () => {
                       variant="ghost"
                       size="sm"
                       onClick={handleLogout}
+                      className="glow-on-hover"
                     >
                       Вийти
                     </Button>
@@ -323,7 +324,7 @@ const Navbar = () => {
                       setIsMenuOpen(false);
                       window.location.href = '/create-ad';
                     }}
-                    className="w-full btn-accent rounded-2xl"
+                    className="w-full btn-accent rounded-2xl glow-on-hover"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Створити оголошення
@@ -335,7 +336,7 @@ const Navbar = () => {
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                       <Button
                         variant="outline"
-                        className="w-full rounded-2xl"
+                        className="w-full rounded-2xl glow-on-hover"
                       >
                         <Settings className="w-4 h-4 mr-2" />
                         Адмін панель
@@ -348,7 +349,7 @@ const Navbar = () => {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                 <Button
                   onClick={() => setIsAuthModalOpen(true)}
-                  className="w-full btn-accent rounded-2xl"
+                  className="w-full btn-accent rounded-2xl glow-on-hover"
                 >
                   <User className="w-4 h-4 mr-2" />
                   Вхід
